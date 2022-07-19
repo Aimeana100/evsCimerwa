@@ -20,6 +20,8 @@ class EmployeeCollection extends ResourceCollection
             'gender',
             'ID_Card',
             'phone',
+            'taps',
+            'category',
             'latestTap',
             'company',
             'status',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CardTapResource extends JsonResource
@@ -19,7 +20,9 @@ class CardTapResource extends JsonResource
             'ID_Card' => $this->ID_Card,
             'tapped_at' => $this->tapped_at,
             'card_type' => $this->card_type,
-            'status' => $this->status
+            'status' => $this->status,
+            'employee' => EmployeeResource::collection($this->employee),
+            'visitor' => VisitorResource::collection($this->visitor),
         ];
     }
 }

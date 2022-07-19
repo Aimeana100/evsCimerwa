@@ -19,7 +19,9 @@ class CardTapCollection extends ResourceCollection
             'ID_Card',
             'tapped_at',
             'card_type',
-            'status'
+            'status',
+            'employee',
+            'visitor'
         );
     }
 }

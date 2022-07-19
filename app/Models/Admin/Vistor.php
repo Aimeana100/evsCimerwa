@@ -22,8 +22,9 @@ class Vistor extends Model
         'status',
     ];
 
-    public function taps(){
-        return $this->hasMany(CardTap::class, 'user_id');
+    public function taps()
+    {
+        return $this->hasMany(CardTap::class, 'ID_Card', 'ID_Card');
     }
 
     public function scopeSelectedFilter($query, $selected)
@@ -41,23 +42,34 @@ class Vistor extends Model
         }
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeDateRange($query, $selected)
     {
-        $query->when($filters['searchFrom'] ?? null, function ($query, $from) {
-            $query->where('dateJoined', '>=', $from);
-        })->when($filter['searchTo'] ?? null, function($query, $to){
-
-            $query->Where('dateJoined', '<=', $to);
-        })
-        
-        ->when(
-            $filters['selected'] ?? null,
-            function ($query, $filter) {
-                $query->SelectedFilter($filter);
-            }
-        );
+        switch ($selected) {
+            case 'inGate':
+                return $query->where('status', 'IN');
+                break;
+            case 'outGate':
+                return $query->where('status', 'OUT');
+                break;
+            default:
+                # code...
+                break;
+        }
     }
 
-
-
+    public function scopeFilter($query, array $filters)
+    {
+        $query
+        ->when($filter['searchTo'] ?? null, function ($query, $to) {
+            $query->Where('dateJoined', '<=', $to);
+        })->when($filters['searchFrom'] ?? null, function ($query) use ($filters) {
+            $query->where('dateJoined', '>=', $filters['searchFrom']);
+        })
+            ->when(
+                $filters['selected'] ?? null,
+                function ($query, $filter) {
+                    $query->SelectedFilter($filter);
+                }
+            );
+    }
 }

@@ -15,16 +15,19 @@ class EmployeeResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
-            'id'=> $this->id,
-            'names'=>$this->names,
-            'gender'=>$this->gender,
-            'ID_Card'=>$this->ID_Card,
-            'phone'=>$this->phone,
-            'latestTap'=>$this->latestTap,
-            'company'=>$this->company,
-            'status'=>$this->status,
-            'state'=>$this->state,
+            'id' => $this->id,
+            'names' => $this->names,
+            'gender' => $this->gender,
+            'ID_Card' => $this->ID_Card,
+            'phone' => $this->phone,
+            'taps' => CardTapResource::collection($this->taps),
+            'latestTap' => $this->latestTap,
+            'category' => $this->category,
+            'company' => $this->company,
+            'status' => $this->status,
+            'state' => $this->state,
         ];
     }
 }

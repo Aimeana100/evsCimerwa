@@ -1,12 +1,13 @@
-require('./bootstrap');
+require("./bootstrap");
 
-import React from 'react';
-import { render } from 'react-dom';
-import { createInertiaApp } from '@inertiajs/inertia-react';
-import { InertiaProgress } from '@inertiajs/progress';
+import React from "react";
+import { render } from "react-dom";
+import { createInertiaApp } from "@inertiajs/inertia-react";
+import { InertiaProgress } from "@inertiajs/progress";
 import "@material-tailwind/react/tailwind.css";
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName =
+    window.document.getElementsByTagName("title")[0]?.innerText || "EVS";
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -16,4 +17,4 @@ createInertiaApp({
     },
 });
 
-InertiaProgress.init({ color: '#4B5563' });
+InertiaProgress.init({ color: "#4B5563" });

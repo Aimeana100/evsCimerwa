@@ -2,8 +2,9 @@
 
 namespace App\Models\Admin;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Employee extends Model
 {
@@ -21,6 +22,17 @@ class Employee extends Model
         'status',
         'state'
     ];
+
+    protected function getDateTappedAttribute($value)
+    {
+        return  date_format(date_create($value), 'yy-m-d');
+    }
+
+
+    public function taps()
+    {
+        return $this->hasMany(CardTap::class, 'ID_Card', 'ID_Card');
+    }
 
     public function scopeSelectedFilter($query, $selected)
     {

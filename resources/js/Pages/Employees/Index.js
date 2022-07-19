@@ -12,7 +12,7 @@ const Index = () => {
     const employees = usePage().props;
     console.log(employees);
 
-    const { data, meta: links } =  employees.employees ;
+    const { data, meta: links } =  employees.employees;
 
     return (
         <>
@@ -35,12 +35,12 @@ const Index = () => {
                     <table className="w-full whitespace-nowrap">
                         <thead>
                             <tr className="font-bold text-left">
-                                <th className="px-6 pt-5 pb-4"> Names</th>
+                                <th className="px-6 pt-5 pb-4">Names</th>
                                 <th className="px-6 pt-5 pb-4">ID card</th>
                                 <th className="px-6 pt-5 pb-4">Telphone</th>
                                 <th className="px-6 pt-5 pb-4">Gender</th>
-                                <th className="px-6 pt-5 pb-4"> Company</th>
-                                <th className="px-6 pt-5 pb-4"> State </th>
+                                <th className="px-6 pt-5 pb-4">Category</th>
+                                <th className="px-6 pt-5 pb-4">State </th>
                                 <th className="px-6 pt-5 pb-4">Tools</th>
                             </tr>
                         </thead>
@@ -53,12 +53,12 @@ const Index = () => {
                                     ID_Card,
                                     gender,
                                     state,
-                                    company,
+                                    category,
                                 }) => {
                                     return (
                                         <tr
                                             key={id}
-                                            className="hover:bg-gray-100 focus-within:bg-gray-100"
+                                            className="hover:bg-gray-100 {'bg-red-200' || state == true} focus-within:bg-gray-100"
                                         >
                                             <td className="border-t">
                                                 {names}
@@ -74,7 +74,7 @@ const Index = () => {
                                                 {gender}
                                             </td>
                                             <td className="border-t">
-                                                {company}
+                                                {category}
                                             </td>
                                             <td className="border-t">
                                                 {state == true
@@ -98,7 +98,7 @@ const Index = () => {
                                                             id
                                                         )}
                                                     >
-                                                        <Button> Awake </Button>
+                                                        <Button> Revoke </Button>
                                                     </InertiaLink>
                                                 )}
                                             </td>

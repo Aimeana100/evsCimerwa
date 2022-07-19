@@ -11143,7 +11143,8 @@ var Search = function Search() {
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     search: filters.search || "",
-    selected: filters.selected || ""
+    selected: filters.selected || "",
+    onDate: filters.onDate || ""
   }),
       _useState2 = _slicedToArray(_useState, 2),
       values = _useState2[0],
@@ -11169,55 +11170,55 @@ var Search = function Search() {
     setValues(function (values) {
       return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
     }); // if (opened) setOpened(false);
-  }
+  } // console.log(values);
 
-  console.log(values);
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    className: "flex justify-between align-baseline flex-lg-row p-2 rounded-md bg-slate-300 w-full ",
+    className: "flex justify-between align-baseline flex-col md:flex-row flex-lg-row p-2 rounded-md bg-slate-300 w-full ",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "flex bg-[#dddde7ee] p-2 w-60",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Label, {
-        color: "primary",
+        color: "primary hidden md:inline",
         className: "bg-[#dcdceeee]  rounded-none px-20 ",
         children: "Filter"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
         value: values.selected,
         name: "selected",
         onChange: handleChange,
-        className: "w-lg-50 p-2 w-full bg-slate-100 border-0  ",
+        className: "w-lg-50 p-2 w-full bg-slate-100 border-0 text-[13px] ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
           value: "",
-          className: "w-full p-6",
-          children: "All Employees"
+          className: "rounded py-3 px-2 text-[12px]",
+          children: "All"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
           value: "banned",
-          className: "w-full p-6",
+          className: "rounded  py-3 px-2 text-[12px]",
           children: "Banned"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
           value: "activated",
-          className: "w-full p-6",
+          className: "rounded     py-3 px-2 text-[12px]",
           children: "Active"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
           value: "inGate",
-          className: "w-full p-6",
+          className: "rounded    py-3 px-2 text-[12px]",
           children: "In-Gate"
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "flex bg-[#dddde7ee] p-2 flex-1 justify-end self-end",
+      className: "flex bg-[#dddde7ee] p-0 md:p-2 flex-1 justify-end self-end",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "flex w-fit border bg-slate-200 rounded-full py-1 px-3 ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Label, {
           "for": "search",
-          className: "bg-slate-200 px-20 ",
+          className: "bg-slate-200 px-20 hidden md:inline",
           children: "Search"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-          autoComplete: "off",
+          autoComplete: "on",
           type: "text",
           name: "search",
           value: values.search,
           onChange: handleChange,
-          className: "bg-slate-200 rounded-full"
+          className: "bg-slate-200 px-1 md:p-1 rounded-full"
         })]
       })
     })]
@@ -11225,159 +11226,6 @@ var Search = function Search() {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Search);
-
-/***/ }),
-
-/***/ "./resources/js/AppComponents/SearchVisitor.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/AppComponents/SearchVisitor.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.js");
-/* harmony import */ var react_use__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-use */ "./node_modules/react-use/esm/usePrevious.js");
-/* harmony import */ var _material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-tailwind/react */ "./node_modules/@material-tailwind/react/index.js");
-/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
-/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
-
-var SearchVisitor = function SearchVisitor() {
-  var filters = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.usePage)().props.filters;
-  console.log(filters);
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    seachFrom: filters.searchFrom || "",
-    seachTo: filters.searchTo || "",
-    selected: filters.selected || ""
-  }),
-      _useState2 = _slicedToArray(_useState, 2),
-      values = _useState2[0],
-      setValues = _useState2[1];
-
-  var prevValues = (0,react_use__WEBPACK_IMPORTED_MODULE_7__["default"])(values);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
-    if (prevValues) {
-      var query = Object.keys(lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(values)).length ? lodash_pickBy__WEBPACK_IMPORTED_MODULE_4___default()(values) : {
-        remember: "forget"
-      };
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.get(route(route().current()), query, {
-        replace: true,
-        preserveState: true
-      });
-    }
-  }, [values]);
-
-  function handleChange(e) {
-    var key = e.target.name;
-    var value = e.target.value;
-    setValues(function (values) {
-      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
-    }); // if (opened) setOpened(false);
-  }
-
-  console.log(values);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    className: "flex justify-between align-baseline flex-lg-row p-2 rounded-md bg-slate-300 w-full ",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-      className: "flex bg-[#dddde7ee] p-2 w-60",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Label, {
-        color: "primary",
-        className: "bg-[#dcdceeee]  rounded-none px-20 ",
-        children: "Filter"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
-        value: values.selected,
-        name: "selected",
-        onChange: handleChange,
-        className: "w-lg-50 p-2 w-full bg-slate-100 border-0  ",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-          value: "",
-          className: "w-full p-6",
-          children: "All Vistors"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-          value: "inGate",
-          className: "w-full p-6",
-          children: "In-Gate"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-          value: "outGate",
-          className: "w-full p-6",
-          children: "Out-Gate"
-        })]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "flex bg-[#dddde7ee] p-2 flex-1 justify-end self-end",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "flex w-fit border bg-slate-200 rounded-full py-1 px-3 ",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Label, {
-          "for": "search",
-          className: "bg-slate-200 px-20 ",
-          children: "From"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-          autoComplete: "off",
-          type: "date",
-          name: "searchFrom",
-          value: values.searchFrom,
-          onChange: handleChange,
-          className: "bg-slate-200 rounded-full"
-        })]
-      })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-      className: "flex bg-[#dddde7ee] p-2 flex-1 justify-end self-end",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "flex w-fit border bg-slate-200 rounded-full py-1 px-3 ",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_2__.Label, {
-          "for": "search",
-          className: "bg-slate-200 px-20 ",
-          children: "To"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-          autoComplete: "off",
-          type: "date",
-          name: "searchTo",
-          value: values.searchTo,
-          onChange: handleChange,
-          className: "bg-slate-200 rounded-full"
-        })]
-      })
-    })]
-  });
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SearchVisitor);
 
 /***/ }),
 
@@ -11502,17 +11350,6 @@ function Sidebar(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
               className: "rounded-lg mb-4",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                href: route("users"),
-                active: route().current("users"),
-                activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                  name: "dashboard",
-                  size: "2xl"
-                }), "Users"]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-              className: "rounded-lg mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 href: route("vistors"),
                 active: route().current("vistors"),
                 activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
@@ -11524,17 +11361,6 @@ function Sidebar(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
               className: "rounded-lg mb-4",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                href: route("companies"),
-                active: route().current("companies"),
-                activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                  name: "dashboard",
-                  size: "2xl"
-                }), "Companies"]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-              className: "rounded-lg mb-4",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 href: route("employees"),
                 active: route().current("employees"),
                 activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
@@ -11542,6 +11368,39 @@ function Sidebar(_ref) {
                   name: "dashboard",
                   size: "2xl"
                 }), "Employees"]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+              className: "rounded-lg mb-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route("employeesAttendance"),
+                active: route().current("employeesAttendance"),
+                activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  name: "dashboard",
+                  size: "2xl"
+                }), "Emp. Attendance"]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+              className: "rounded-lg mb-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route("users"),
+                active: route().current("users"),
+                activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  name: "dashboard",
+                  size: "2xl"
+                }), "Users"]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+              className: "rounded-lg mb-4",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                href: route("companies"),
+                active: route().current("companies"),
+                activeClassName: "bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  name: "dashboard",
+                  size: "2xl"
+                }), "Companies"]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
               className: "rounded-lg mb-4",
@@ -12354,15 +12213,17 @@ function Guest(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createDateString": () => (/* binding */ createDateString),
+/* harmony export */   "getTapsFiltered": () => (/* binding */ getTapsFiltered),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _material_tailwind_react_Heading6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-tailwind/react/Heading6 */ "./node_modules/@material-tailwind/react/Heading6.js");
-/* harmony import */ var _Components_NavLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/NavLink */ "./resources/js/Components/NavLink.js");
-/* harmony import */ var _material_tailwind_react_Icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-tailwind/react/Icon */ "./node_modules/@material-tailwind/react/Icon.js");
-/* harmony import */ var _AppComponents_Sidebar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/AppComponents/Sidebar */ "./resources/js/AppComponents/Sidebar.js");
-/* harmony import */ var _AppComponents_AdminNavbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/AppComponents/AdminNavbar */ "./resources/js/AppComponents/AdminNavbar.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _AppComponents_Sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/AppComponents/Sidebar */ "./resources/js/AppComponents/Sidebar.js");
+/* harmony import */ var _AppComponents_AdminNavbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/AppComponents/AdminNavbar */ "./resources/js/AppComponents/AdminNavbar.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -12375,6 +12236,11 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -12383,6 +12249,46 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var createDateString = function createDateString(dates) {
+  var date = String(new Date(dates).getFullYear()) + "-" + (String(parseInt(new Date(dates).getMonth()) + 1 < 10) ? "0" + String(parseInt(new Date(dates).getMonth()) + 1) : String(parseInt(new Date(dates).getMonth()) + 1)) + "-" + (parseInt(new Date(dates).getDate()) < 10 ? "0" + String(new Date(dates).getDate()) : String(new Date(dates).getDate()));
+  return date;
+};
+
+var organizeDaily = function organizeDaily(mixed_records) {
+  var ArrSorted = [];
+  mixed_records.forEach(function (currentVisitor) {
+    currentVisitor.taps.forEach(function (CurrentTap) {
+      (0,lodash__WEBPACK_IMPORTED_MODULE_4__.isArray)(ArrSorted[createDateString(CurrentTap.tapped_at)]) ? ArrSorted[createDateString(CurrentTap.tapped_at)].push(currentVisitor) : ArrSorted[createDateString(CurrentTap.tapped_at)] = [currentVisitor];
+    });
+  });
+
+  for (var el in ArrSorted) {
+    ArrSorted[el] = Array.from(new Set(ArrSorted[el]));
+  }
+
+  return ArrSorted;
+}; // filter and organize the data
+
+
+var getTapsFiltered = function getTapsFiltered(unifiltered) {
+  var taps_filtered = [];
+  var organized = organizeDaily(unifiltered);
+
+  for (var key_day in organized) {
+    taps_filtered.push({
+      date: key_day,
+      records: organized[key_day].map(function (e, i) {
+        return _objectSpread(_objectSpread({}, e), {}, {
+          taps: e.taps.filter(function (t) {
+            return createDateString(t.tapped_at) == key_day;
+          })
+        });
+      })
+    });
+  }
+
+  return taps_filtered;
+};
 
 function Layout(_ref) {
   var title = _ref.title,
@@ -12393,14 +12299,14 @@ function Layout(_ref) {
       showSidebar = _useState2[0],
       setShowSidebar = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AppComponents_AdminNavbar__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AppComponents_AdminNavbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
       showSidebar: showSidebar,
       setShowSidebar: setShowSidebar
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_AppComponents_Sidebar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_AppComponents_Sidebar__WEBPACK_IMPORTED_MODULE_1__["default"], {
       showSidebar: showSidebar,
       setShowSidebar: setShowSidebar
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       className: "mx-1 p-2",
       children: children
     })]
@@ -13428,7 +13334,7 @@ var Index = function Index() {
               className: "font-bold text-left",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 className: "px-6 pt-5 pb-4",
-                children: " Names"
+                children: "Names"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 className: "px-6 pt-5 pb-4",
                 children: "ID card"
@@ -13440,10 +13346,10 @@ var Index = function Index() {
                 children: "Gender"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 className: "px-6 pt-5 pb-4",
-                children: " Company"
+                children: "Category"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 className: "px-6 pt-5 pb-4",
-                children: " State "
+                children: "State "
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("th", {
                 className: "px-6 pt-5 pb-4",
                 children: "Tools"
@@ -13457,9 +13363,9 @@ var Index = function Index() {
                   ID_Card = _ref.ID_Card,
                   gender = _ref.gender,
                   state = _ref.state,
-                  company = _ref.company;
+                  category = _ref.category;
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("tr", {
-                className: "hover:bg-gray-100 focus-within:bg-gray-100",
+                className: "hover:bg-gray-100 {'bg-red-200' || state == true} focus-within:bg-gray-100",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                   className: "border-t",
                   children: names
@@ -13474,7 +13380,7 @@ var Index = function Index() {
                   children: gender
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                   className: "border-t",
-                  children: company
+                  children: category
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                   className: "border-t",
                   children: state == true ? "Activeted" : "burned"
@@ -13488,7 +13394,7 @@ var Index = function Index() {
                   }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.InertiaLink, {
                     href: route("employee.burn", id),
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Button, {
-                      children: " Awake "
+                      children: " Revoke "
                     })
                   })
                 })]
@@ -13503,6 +13409,447 @@ var Index = function Index() {
 
 Index.layout = function (page) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    title: "Users",
+    children: page
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/EmployeesAttendance/Burn.js":
+/*!********************************************************!*\
+  !*** ./resources/js/Pages/EmployeesAttendance/Burn.js ***!
+  \********************************************************/
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/EmployeesAttendance/Index.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/Pages/EmployeesAttendance/Index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AppComponents_Sidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/AppComponents/Sidebar */ "./resources/js/AppComponents/Sidebar.js");
+/* harmony import */ var _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Layouts/Authenticated */ "./resources/js/Layouts/Authenticated.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Layouts/Layout */ "./resources/js/Layouts/Layout.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-tailwind/react */ "./node_modules/@material-tailwind/react/index.js");
+/* harmony import */ var react_use__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-use */ "./node_modules/react-use/esm/usePrevious.js");
+/* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.js");
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash/pickBy */ "./node_modules/lodash/pickBy.js");
+/* harmony import */ var lodash_pickBy__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_pickBy__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Index = function Index() {
+  var _employeeData$, _employeeData$2;
+
+  var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props,
+      employees = _usePage$props.employees,
+      taps = _usePage$props.taps,
+      filters = _usePage$props.filters,
+      flash = _usePage$props.flash;
+  var data = employees.data,
+      links = employees.meta.links;
+  var orderedData = (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.getTapsFiltered)(data); // console.log(orderedData.filter((el,i)=>{return el.date == createDateString(new Date())}));
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)({
+    onDate: filters.onDate || "",
+    selected: filters.selected || "",
+    shifts: filters.shifts || "",
+    searchMatch: filters.searchMatch || ""
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)((0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(new Date())),
+      _useState4 = _slicedToArray(_useState3, 2),
+      filterDate = _useState4[0],
+      setfilterDate = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      employeeData = _useState6[0],
+      setEmployeeData = _useState6[1];
+
+  var shifts = {
+    sh1: {
+      from: 8,
+      to: 13
+    },
+    sh2: {
+      from: 13,
+      to: 21
+    },
+    sh3: {
+      from: 21,
+      to: 23
+    }
+  };
+  var prevValues = (0,react_use__WEBPACK_IMPORTED_MODULE_10__["default"])(values);
+
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    }); // if (opened) setOpened(false);
+  }
+
+  function handleChangeSearch(e) {
+    var key = e.target.name;
+    var value = e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, {
+        searchMatch: value
+      });
+    }); // if (opened) setOpened(false);
+  } // useEffect(() => {
+  //     // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+  //     if (prevValues) {
+  //         if(values.searchMatch != "" && orderedData.length != 0){
+  //             const searchTable = orderedData.map(el=> {
+  //                 return {
+  //                     ...el,
+  //                     records: el.records.filter(filtEl=> {return (filtEl.names.includes(values.searchMatch) || filtEl.ID_Card.includes(values.searchMatch))} )
+  //                 }
+  //              })
+  //             setEmployeeData(searchTable);
+  //             return;
+  //         }
+  //     }
+  // }, [values.searchMatch]);
+
+
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(function () {
+    if (prevValues) {
+      console.log("here"); // if (values.searchFrom != "" && vistorsData.filter((elF, i) => elF.date == values.searchFrom).length != 0) {
+      // }
+
+      if (values.selected == "banned") {
+        var visitorIn = orderedData.filter(function (el, i) {
+          return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+        }).map(function (el, index) {
+          return _objectSpread(_objectSpread({}, el), {}, {
+            records: el.records.filter(function (elementToFilter) {
+              return elementToFilter.state == false;
+            })
+          });
+        });
+        setEmployeeData(visitorIn);
+        return;
+      } else if (values.selected == "activated") {
+        var visitorOut = orderedData.filter(function (el, i) {
+          return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+        }).map(function (el, index) {
+          return _objectSpread(_objectSpread({}, el), {}, {
+            records: el.records.filter(function (elementToFilter) {
+              return elementToFilter.state == true;
+            })
+          });
+        });
+        setEmployeeData(visitorOut);
+        return;
+      } else if (values.selected == "inGate") {
+        var _visitorOut = orderedData.filter(function (el, i) {
+          return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+        }).map(function (el, index) {
+          return _objectSpread(_objectSpread({}, el), {}, {
+            records: el.records.filter(function (elementToFilter) {
+              return elementToFilter.status == "IN";
+            })
+          });
+        });
+
+        setEmployeeData(_visitorOut);
+        return;
+      }
+
+      if (values.onDate != "") {
+        if (orderedData.filter(function (elF, i) {
+          return elF.date == values.onDate;
+        }).length != 0) {
+          // const visitorDate = orderedData.filter((elM, index) => {
+          //     return elM.date == values.onDate;
+          // });
+          setEmployeeData(orderedData.filter(function (el, i) {
+            return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+          }));
+          return;
+        } else {
+          setValues(function (values) {
+            return _objectSpread(_objectSpread({}, values), {}, {
+              onDate: (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(new Date())
+            });
+          });
+        }
+      }
+    } else {
+      setValues(function (values) {
+        return _objectSpread(_objectSpread({}, values), {}, {
+          onDate: (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(new Date())
+        });
+      }); //    const toDay =  orderedData.filter((el,i)=>{return el.date == createDateString(new Date()).toString()})
+      //    setEmployeeData(toDay);
+    }
+  }, [values]);
+  console.log(employeeData);
+  var shift1 = orderedData.filter(function (el, i) {
+    return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+  }).map(function (todaysEl, id) {
+    return _objectSpread(_objectSpread({}, todaysEl), {}, {
+      records: todaysEl.records.filter(function (el, i) {
+        el.taps.filter(function (tapEl) {
+          return new Date(tapEl.tapped_at).getHours > shifts.sh1.from && new Date(tapEl.tapped_at).getHours < shifts.sh1.to;
+        });
+      })
+    });
+  });
+  var shift2 = orderedData.filter(function (el, i) {
+    return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+  }).map(function (todaysEl, id) {
+    return _objectSpread(_objectSpread({}, todaysEl), {}, {
+      records: todaysEl.records.filter(function (el, i) {
+        el.taps.filter(function (tapEl) {
+          return new Date(tapEl.tapped_at).getHours > shifts.sh2.from && new Date(tapEl.tapped_at).getHours < shifts.sh.to;
+        });
+      })
+    });
+  });
+  var shift3 = orderedData.filter(function (el, i) {
+    return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+  }).map(function (todaysEl, id) {
+    return _objectSpread(_objectSpread({}, todaysEl), {}, {
+      records: todaysEl.records.filter(function (el, i) {
+        el.taps.filter(function (tapEl) {
+          return new Date(tapEl.tapped_at).getHours > shifts.sh3.from && new Date(tapEl.tapped_at).getHours < shifts.sh3.to;
+        });
+      })
+    });
+  });
+  var shif = orderedData.filter(function (el, i) {
+    return el.date == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(values.onDate).toString();
+  })[0]; //    const shift4 = {shif, records:shif.records}; 
+  // console.log(shif.date);
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      className: "md:ml-64 pt-10",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h1", {
+        className: "mb-8 text-3xl font-bold",
+        children: "Employees"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "flex items-center w-full justify-between mb-6",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+          className: "flex justify-between align-baseline flex-col md:flex-row flex-lg-row p-2 rounded-md bg-slate-300 w-full ",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "flex justify-center items-center  p-2 w-60",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              color: "primary hidden md:inline",
+              className: " text-black rounded-none px-6 ",
+              children: "Filter"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("select", {
+              value: values.selected,
+              name: "selected",
+              onChange: handleChange,
+              className: "p-2 w-[80px] bg-slate-100 border-0 text-[13px] ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "",
+                className: "rounded py-3 px-2 text-[12px]",
+                children: "All"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "banned",
+                className: "rounded  py-3 px-2 text-[12px]",
+                children: "Banned"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "activated",
+                className: "rounded  py-3 px-2 text-[12px]",
+                children: "Active"
+              }), values.onDate == (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.createDateString)(new Date()) && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "inGate",
+                className: "rounded    py-3 px-2 text-[12px]",
+                children: "In-Gate"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+            className: "flex justify-center items-center  p-2 w-80",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_6__["default"], {
+              color: "primary hidden md:inline",
+              className: " text-black rounded-none px-6 ",
+              children: "Shifts"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("select", {
+              value: values.shifts,
+              name: "shifts",
+              onChange: handleChange,
+              className: "p-2 w-[120px] bg-slate-100 border-0 text-[13px] ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "",
+                className: "rounded py-3 px-2 text-[12px]",
+                children: "All shifts"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "first",
+                className: "rounded  py-3 px-2 text-[12px]",
+                children: "SHT[8:00-13:00]"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "second",
+                className: "rounded  py-3 px-2 text-[12px]",
+                children: "SHT[13:00-21:00]"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("option", {
+                value: "inGate",
+                className: "rounded    py-3 px-2 text-[12px]",
+                children: "SHT[21:00-22:59]"
+              })]
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+            className: "flex p-2 flex-1 items-center justify-end ",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+              className: "flex w-fit border bg-slate-200 rounded-full py-1 px-3 ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                "for": "search",
+                className: "bg-slate-200 px-2 md:px-20 ",
+                children: "Date"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", {
+                autoComplete: "off",
+                type: "date",
+                name: "onDate",
+                value: values.onDate,
+                onChange: handleChange,
+                className: "bg-slate-200 p-1 rounded-full"
+              })]
+            })
+          })]
+        })
+      }), flash.success && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.ClosingAlert, {
+        color: "teal",
+        children: flash.success
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("div", {
+        className: "overflow-x-auto bg-white rounded shadow",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("table", {
+          className: "w-full whitespace-nowrap",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("thead", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+              className: "font-bold text-left",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "Names"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "ID card"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "Telphone"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "Gender"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "Category"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "State "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("th", {
+                className: "px-6 pt-5 pb-4",
+                children: "Tools"
+              })]
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("tbody", {
+            children: ((_employeeData$ = employeeData[0]) === null || _employeeData$ === void 0 ? void 0 : _employeeData$.records) && ((_employeeData$2 = employeeData[0]) === null || _employeeData$2 === void 0 ? void 0 : _employeeData$2.records.map(function (_ref) {
+              var id = _ref.id,
+                  names = _ref.names,
+                  phone = _ref.phone,
+                  ID_Card = _ref.ID_Card,
+                  gender = _ref.gender,
+                  state = _ref.state,
+                  category = _ref.category;
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("tr", {
+                className: "hover:bg-gray-100 {'bg-red-200' || state == true} focus-within:bg-gray-100",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: names
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none",
+                  children: ID_Card
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: phone
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: gender
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: category
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: state == true ? "Activeted" : "burned"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("td", {
+                  className: "border-t",
+                  children: state == true ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.InertiaLink, {
+                    href: route("employee.burn", id),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                      children: [" ", "Burn", " "]
+                    })
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.InertiaLink, {
+                    href: route("employee.burn", id),
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Button, {
+                      children: [" ", "Revoke", " "]
+                    })
+                  })
+                })]
+              }, id);
+            }))
+          })]
+        })
+      })]
+    })
+  });
+};
+
+Index.layout = function (page) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__["default"], {
     title: "Users",
     children: page
   });
@@ -14022,15 +14369,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Layouts/Layout */ "./resources/js/Layouts/Layout.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-tailwind/react */ "./node_modules/@material-tailwind/react/index.js");
-/* harmony import */ var _AppComponents_SearchVisitor__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/AppComponents/SearchVisitor */ "./resources/js/AppComponents/SearchVisitor.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var react_use__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-use */ "./node_modules/react-use/esm/usePrevious.js");
+/* harmony import */ var react_lazy_load__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-lazy-load */ "./node_modules/react-lazy-load/lib/LazyLoad.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -14062,8 +14422,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // import TableRow from "@/AppComponents/TableRow";
-// import Search from "@/AppComponents/Search";
+
 
 
 
@@ -14085,42 +14444,18 @@ var TableComponent = /*#__PURE__*/function (_Component) {
     value: function render() {
       var body = this.props.data;
       var tableTitle = this.props.tableTitle;
-      var heading = ["#", "Names", "Phone", "NID", "Gender", "Movement", "Date"];
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Table, {
-          tableTitle: tableTitle,
-          heading: heading,
-          body: body
-        })
-      });
-    }
-  }]);
+      var heading = ["#", "Names", "Phone", "NID", "Gender", "Movement", "Time-Range"];
 
-  return TableComponent;
-}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
+      function containsSpecialChars(str) {
+        var specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+        if (str) return specialChars.test(str) || str.length > 15;else return specialChars.test(str);
+      }
 
-var Table = /*#__PURE__*/function (_Component2) {
-  _inherits(Table, _Component2);
-
-  var _super2 = _createSuper(Table);
-
-  function Table() {
-    _classCallCheck(this, Table);
-
-    return _super2.apply(this, arguments);
-  }
-
-  _createClass(Table, [{
-    key: "render",
-    value: function render() {
-      var heading = this.props.heading;
-      var body = this.props.body;
-      var title = this.props.tableTitle;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "overflow-x-auto bg-white rounded shadow border-2",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h1", {
-          className: "text-center px-6",
-          children: [" ", title, " "]
+          className: "text-center px-6 bg-slate-400 py-[1px] text-[26px] font-bold",
+          children: [" ", tableTitle, " "]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("table", {
           className: "w-full whitespace-nowrap mb-3 mx-2 pb-4",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("thead", {
@@ -14133,10 +14468,38 @@ var Table = /*#__PURE__*/function (_Component2) {
               })
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("tbody", {
-            children: body.map(function (row, key) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(TableRow, {
-                row: row
-              }, key);
+            children: body.map(function (row, index) {
+              return (
+                /*#__PURE__*/
+                //    <TableRow key={index} row={row} />
+                (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("tr", {
+                  className: "hover:bg-gray-100 focus-within:bg-gray-100 py-2",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: row.id
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: row.names
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: !containsSpecialChars(row.phone) && row.phone
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: row.ID_Card
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: row.gender
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Taps, {
+                      taps: row.taps
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
+                    className: "border-t text-[12px]",
+                    children: tap(row.taps)
+                  })]
+                })
+              );
             })
           })]
         })]
@@ -14144,83 +14507,47 @@ var Table = /*#__PURE__*/function (_Component2) {
     }
   }]);
 
-  return Table;
+  return TableComponent;
 }(react__WEBPACK_IMPORTED_MODULE_4__.Component);
 
-var TableRow = /*#__PURE__*/function (_Component3) {
-  _inherits(TableRow, _Component3);
+function tap(tp) {
+  var i = 0;
+  var diffMinutes = [];
 
-  var _super3 = _createSuper(TableRow);
-
-  function TableRow() {
-    _classCallCheck(this, TableRow);
-
-    return _super3.apply(this, arguments);
+  if (tp[0].status == "ENTERING" && tp.length % 2 == 0) {
+    while (i < tp.length) {
+      var tp2 = new Date(tp[i + 1].tapped_at);
+      var tp1 = new Date(tp[i].tapped_at);
+      diffMinutes.push(Math.round((tp2.getTime() - tp1.getTime()) / (1000 * 60)));
+      i += 2;
+    }
   }
 
-  _createClass(TableRow, [{
-    key: "render",
-    value: function render() {
-      var row = this.props.row;
-
-      function containsSpecialChars(str) {
-        var specialChars = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        return specialChars.test(str);
-      }
-
-      var calculateTimeIN = function calculateTimeIN(tp) {
-        var timerange = 0;
-        return tp.map(function (item, index) {
-          return [item.tapped_at, item.status, item];
-        }).sort();
-        tp.forEach(function (item, index, arr) {
-          arr.length >= 2 && console.log(item, arr.length, item.ID_Card);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+      children: [" ",  false || diffMinutes.map(function (e) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+          children: [" ", e, " min"]
         });
-      };
+      }), " "]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("span", {
+      className: "rounded block w-fit p-[1px] bg-red-200 text-black font-mono",
+      children: [" ", diffMinutes.reduce(function (acc, el) {
+        return acc + el;
+      }, 0), " "]
+    })]
+  });
+}
 
-      console.log(calculateTimeIN(row.taps));
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("tr", {
-        className: "hover:bg-gray-100 focus-within:bg-gray-100 py-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: row.id
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: row.names
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: !containsSpecialChars(row.phone) && row.phone
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: row.ID_Card
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: row.gender
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(Taps, {
-            taps: row.taps
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("td", {
-          className: "border-t text-[12px]",
-          children: row.stutus
-        })]
-      });
-    }
-  }]);
+var TapsRow = /*#__PURE__*/function (_Component2) {
+  _inherits(TapsRow, _Component2);
 
-  return TableRow;
-}(react__WEBPACK_IMPORTED_MODULE_4__.Component);
-
-var TapsRow = /*#__PURE__*/function (_Component4) {
-  _inherits(TapsRow, _Component4);
-
-  var _super4 = _createSuper(TapsRow);
+  var _super2 = _createSuper(TapsRow);
 
   function TapsRow() {
     _classCallCheck(this, TapsRow);
 
-    return _super4.apply(this, arguments);
+    return _super2.apply(this, arguments);
   }
 
   _createClass(TapsRow, [{
@@ -14228,7 +14555,7 @@ var TapsRow = /*#__PURE__*/function (_Component4) {
     value: function render() {
       var rows = this.props.taprow;
       var ENTERING = rows.ENTERING,
-          EXITING = rows.EXITING; // console.log(EXITING);
+          EXITING = rows.EXITING;
 
       var getL = function getL(dt) {
         var ENTERING = dt.ENTERING,
@@ -14241,7 +14568,8 @@ var TapsRow = /*#__PURE__*/function (_Component4) {
         } else {
           return ENTERING.length > EXITING.length ? ENTERING : EXITING;
         }
-      };
+      }; // console.log(date_diff_indays(rows));
+
 
       var largeArr = getL(rows);
       return largeArr.map(function (item, index) {
@@ -14272,15 +14600,15 @@ var TapsRow = /*#__PURE__*/function (_Component4) {
   return TapsRow;
 }(react__WEBPACK_IMPORTED_MODULE_4__.Component);
 
-var Taps = /*#__PURE__*/function (_Component5) {
-  _inherits(Taps, _Component5);
+var Taps = /*#__PURE__*/function (_Component3) {
+  _inherits(Taps, _Component3);
 
-  var _super5 = _createSuper(Taps);
+  var _super3 = _createSuper(Taps);
 
   function Taps() {
     _classCallCheck(this, Taps);
 
-    return _super5.apply(this, arguments);
+    return _super3.apply(this, arguments);
   }
 
   _createClass(Taps, [{
@@ -14295,7 +14623,8 @@ var Taps = /*#__PURE__*/function (_Component5) {
         return dateString;
       };
 
-      var taps = this.props.taps;
+      var taps = this.props.taps; // console.log(taps);
+
       var neObj = taps.reduce(function (prv, curr) {
         var key = curr.status;
 
@@ -14305,24 +14634,28 @@ var Taps = /*#__PURE__*/function (_Component5) {
 
         prv[key].push(createDateString(curr.tapped_at));
         return prv;
-      }, {}); // console.log(taps.length);
-
+      }, {});
       var ENTERING = neObj.ENTERING,
-          EXITING = neObj.EXITING; // console.log(ENTERING.length);
-      // if(ENTERING == undefined){
-      //     console.log(taps);
-      //     return ENTERING;
-      // }
-      // var newO = Object.entries(neObj).reduce((acc, item)=>{
-      //     console.log(neObj);
-      //     console.log("new");
-      // });
+          EXITING = neObj.EXITING;
 
-      console.log(neObj.ENTERING, neObj.EXITING);
+      var getL = function getL(dt) {
+        var ENTERING = dt.ENTERING,
+            EXITING = dt.EXITING;
+
+        if (typeof ENTERING == "undefined") {
+          return EXITING;
+        } else if (typeof EXITING == "undefined") {
+          return ENTERING;
+        } else {
+          return ENTERING.length > EXITING.length ? ENTERING : EXITING;
+        }
+      };
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("table", {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("tbody", {
           className: "grid grid-cols-1 divide-red-800 divide-y",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(TapsRow, {
+            timeRange: 4,
             taprow: neObj
           })
         })
@@ -14336,70 +14669,176 @@ var Taps = /*#__PURE__*/function (_Component5) {
 var Index = function Index() {
   var _usePage$props = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props,
       vistors = _usePage$props.vistors,
-      taps = _usePage$props.taps;
+      taps = _usePage$props.taps,
+      filters = _usePage$props.filters;
   var data = vistors.data,
       links = vistors.meta.links;
+  var orderedData = (0,_Layouts_Layout__WEBPACK_IMPORTED_MODULE_3__.getTapsFiltered)(data);
 
-  var organizeDaily = function organizeDaily(mixed_records) {
-    var ArrSorted = [];
-    mixed_records.forEach(function (currentVisitor) {
-      currentVisitor.taps.forEach(function (CurrentTap) {
-        (0,lodash__WEBPACK_IMPORTED_MODULE_7__.isArray)(ArrSorted[createDateString(CurrentTap.tapped_at)]) ? ArrSorted[createDateString(CurrentTap.tapped_at)].push(currentVisitor) : ArrSorted[createDateString(CurrentTap.tapped_at)] = [currentVisitor];
-      });
-    });
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)({
+    searchFrom: filters.searchFrom || "",
+    selected: filters.selected || ""
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      values = _useState2[0],
+      setValues = _useState2[1];
 
-    for (var el in ArrSorted) {
-      ArrSorted[el] = Array.from(new Set(ArrSorted[el]));
-    }
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      vistorsData = _useState4[0],
+      setVisitorsData = _useState4[1];
 
-    return ArrSorted;
-  };
+  var prevValues = (0,react_use__WEBPACK_IMPORTED_MODULE_9__["default"])(values);
 
-  var createDateString = function createDateString(dates) {
-    var dates = new Date(dates).getFullYear() + "-" + (parseInt(new Date(dates).getMonth()) + 1) + "-" + new Date(dates).getDate();
-    return dates;
-  };
+  function handleChange(e) {
+    var key = e.target.name;
+    var value = e.target.value;
+    setValues(function (values) {
+      return _objectSpread(_objectSpread({}, values), {}, _defineProperty({}, key, value));
+    }); // if (opened) setOpened(false);
+  }
 
-  var date1 = new Date('2022-05-30T13:35:48');
-  var date2 = new Date('2022-05-30 13:55:48'); // console.log(date1.toDateString());
-
-  var taps_filtered = [];
-  var organized = organizeDaily(data);
-
-  for (var key_day in organized) {
-    taps_filtered.push({
-      date: key_day,
-      records: organized[key_day].map(function (e, i) {
-        return _objectSpread(_objectSpread({}, e), {}, {
-          taps: e.taps.filter(function (t) {
-            return createDateString(t.tapped_at) == key_day;
-          })
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(function () {
+    // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
+    if (prevValues) {
+      // if (values.searchFrom != "" && vistorsData.filter((elF, i) => elF.date == values.searchFrom).length != 0) {
+      // }
+      if (values.selected == "inGate") {
+        var visitorIn = orderedData.map(function (el, index) {
+          return _objectSpread(_objectSpread({}, el), {}, {
+            records: el.records.filter(function (elementToFilter) {
+              return elementToFilter.status == "IN";
+            })
+          });
         });
-      })
-    });
-  } // console.log(taps_filtered);
+        setVisitorsData(visitorIn);
+        return;
+      } else if (values.selected == "outGate") {
+        var visitorOut = orderedData.map(function (el, index) {
+          return _objectSpread(_objectSpread({}, el), {}, {
+            records: el.records.filter(function (elementToFilter) {
+              return elementToFilter.status == "OUT";
+            })
+          });
+        });
+        setVisitorsData(visitorOut);
+        return;
+      }
 
+      if (values.searchFrom != "" && orderedData.filter(function (elF, i) {
+        return elF.date == values.searchFrom;
+      }).length != 0) {
+        var visitorDate = orderedData.filter(function (elM, index) {
+          return elM.date == values.searchFrom;
+        });
+        setVisitorsData(visitorDate);
+        return;
+      } // else {
+      //     setVisitorsData(orderedData);
+      //     return;
+      // }
 
-  var dateCombined = "";
-  var Rspans = 0;
-  var renderFlag = false;
+    } else {
+      setVisitorsData(orderedData);
+    }
+  }, [values]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
       className: "md:ml-64 pt-10",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h1", {
         className: "mb-8 text-3xl font-bold",
-        children: "Vistors"
+        children: "Vistors "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
         className: "flex items-center justify-between mb-6",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
           className: "flex items-center w-full justify-between mb-6",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_AppComponents_SearchVisitor__WEBPACK_IMPORTED_MODULE_6__["default"], {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+            className: "flex justify-between align-baseline flex-col md:flex-row p-2 rounded-md bg-slate-300 w-full ",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+              className: "flex bg-[#dddde7ee] p-2 w-60",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Label, {
+                color: "primary",
+                className: "bg-[#dcdceeee] rounded-none px-20 ",
+                children: "Filter"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", {
+                value: values.selected,
+                name: "selected",
+                onChange: handleChange,
+                className: "w-lg-50 p-1 w-full bg-slate-100 border-0 text-[13px] ",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                  value: "",
+                  className: "p-1 md:py-2 md:px-2 text-[12px]",
+                  children: "All Vistors"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                  value: "inGate",
+                  className: "p-1 md:py-2 md:px-2 text-[12px]",
+                  children: "In-Gate"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                  value: "outGate",
+                  className: "p-1 md:py-2 md:px-2 text-[12px]",
+                  children: "Out-Gate"
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "flex bg-[#dddde7ee] p-2 flex-1 justify-end",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                className: "flex md:flex-col flex-row min-w-fit border bg-slate-200 py-1 px-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Label, {
+                  color: "primary",
+                  "for": "search",
+                  className: "bg-slate-200 px-2 md:px-18 ",
+                  children: "Shifts"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", {
+                  value: values.shifts,
+                  name: "shifts" // onChange={handleChange}
+                  ,
+                  className: "w-lg-50 p-1 w-full bg-slate-100 border-0 text-[13px]",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                    value: "",
+                    className: "p-1 md:py-2 md:px-2 text-[12px]",
+                    children: "All Vistors"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                    value: "inGate",
+                    className: "p-1 md:py-2 md:px-2 text-[12px]",
+                    children: "Shifts 1"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                    value: "outGate",
+                    className: "p-1 md:py-2 md:px-2 text-[12px]",
+                    children: "Shifts 2"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                    value: "outGate",
+                    className: "p-1 md:py-2 md:px-2 text-[12px]",
+                    children: "Shifts 3"
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+              className: "flex bg-[#dddde7ee] p-2 flex-1 justify-end self-end",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+                className: "flex w-fit border bg-slate-200 rounded-full py-1 px-3 ",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_material_tailwind_react__WEBPACK_IMPORTED_MODULE_5__.Label, {
+                  color: "primary",
+                  "for": "search",
+                  className: "bg-slate-200 px-2 md:px-20 ",
+                  children: "On Date"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", {
+                  autoComplete: "off",
+                  type: "date",
+                  name: "searchFrom",
+                  value: values.searchFrom,
+                  onChange: handleChange,
+                  className: "bg-slate-200 p-1 rounded-full"
+                })]
+              })
+            })]
+          })
         })
-      }), taps_filtered.map(function (item, index, arr) {
-        // console.log(item.records);
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(TableComponent, {
-          data: item.records,
-          tableTitle: item.date
+      }), vistorsData.map(function (item, index, arr) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(TableComponent, {
+            data: item.records,
+            tableTitle: item.date
+          }, index)
         });
       })]
     })
@@ -14720,7 +15159,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-var appName = ((_window$document$getE = window.document.getElementsByTagName('title')[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || 'Laravel';
+var appName = ((_window$document$getE = window.document.getElementsByTagName("title")[0]) === null || _window$document$getE === void 0 ? void 0 : _window$document$getE.innerText) || "EVS";
 (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.createInertiaApp)({
   title: function title(_title) {
     return "".concat(_title, " - ").concat(appName);
@@ -14736,7 +15175,7 @@ var appName = ((_window$document$getE = window.document.getElementsByTagName('ti
   }
 });
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init({
-  color: '#4B5563'
+  color: "#4B5563"
 });
 
 /***/ }),
@@ -15159,6 +15598,39 @@ var deepmerge_1 = deepmerge;
 
 module.exports = deepmerge_1;
 
+
+/***/ }),
+
+/***/ "./node_modules/eventlistener/eventlistener.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/eventlistener/eventlistener.js ***!
+  \*****************************************************/
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function(root,factory){
+    if (true) {
+        !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+		__WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+}(this, function () {
+	function wrap(standard, fallback) {
+		return function (el, evtName, listener, useCapture) {
+			if (el[standard]) {
+				el[standard](evtName, listener, useCapture);
+			} else if (el[fallback]) {
+				el[fallback]('on' + evtName, listener);
+			}
+		}
+	}
+
+    return {
+		add: wrap('addEventListener', 'attachEvent'),
+		remove: wrap('removeEventListener', 'detachEvent')
+	};
+}));
 
 /***/ }),
 
@@ -15686,6 +16158,393 @@ module.exports = function hasSymbols() {
 var bind = __webpack_require__(/*! function-bind */ "./node_modules/function-bind/index.js");
 
 module.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash.debounce/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash.debounce/index.js ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        result = wait - timeSinceLastCall;
+
+    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = debounce;
 
 
 /***/ }),
@@ -17545,6 +18404,455 @@ function stubFalse() {
 }
 
 module.exports = isEqual;
+
+
+/***/ }),
+
+/***/ "./node_modules/lodash.throttle/index.js":
+/*!***********************************************!*\
+  !*** ./node_modules/lodash.throttle/index.js ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as the `TypeError` message for "Functions" methods. */
+var FUNC_ERROR_TEXT = 'Expected a function';
+
+/** Used as references for various `Number` constants. */
+var NAN = 0 / 0;
+
+/** `Object#toString` result references. */
+var symbolTag = '[object Symbol]';
+
+/** Used to match leading and trailing whitespace. */
+var reTrim = /^\s+|\s+$/g;
+
+/** Used to detect bad signed hexadecimal string values. */
+var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+/** Used to detect binary string values. */
+var reIsBinary = /^0b[01]+$/i;
+
+/** Used to detect octal string values. */
+var reIsOctal = /^0o[0-7]+$/i;
+
+/** Built-in method references without a dependency on `root`. */
+var freeParseInt = parseInt;
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof __webpack_require__.g == 'object' && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max,
+    nativeMin = Math.min;
+
+/**
+ * Gets the timestamp of the number of milliseconds that have elapsed since
+ * the Unix epoch (1 January 1970 00:00:00 UTC).
+ *
+ * @static
+ * @memberOf _
+ * @since 2.4.0
+ * @category Date
+ * @returns {number} Returns the timestamp.
+ * @example
+ *
+ * _.defer(function(stamp) {
+ *   console.log(_.now() - stamp);
+ * }, _.now());
+ * // => Logs the number of milliseconds it took for the deferred invocation.
+ */
+var now = function() {
+  return root.Date.now();
+};
+
+/**
+ * Creates a debounced function that delays invoking `func` until after `wait`
+ * milliseconds have elapsed since the last time the debounced function was
+ * invoked. The debounced function comes with a `cancel` method to cancel
+ * delayed `func` invocations and a `flush` method to immediately invoke them.
+ * Provide `options` to indicate whether `func` should be invoked on the
+ * leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+ * with the last arguments provided to the debounced function. Subsequent
+ * calls to the debounced function return the result of the last `func`
+ * invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the debounced function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.debounce` and `_.throttle`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to debounce.
+ * @param {number} [wait=0] The number of milliseconds to delay.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=false]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {number} [options.maxWait]
+ *  The maximum time `func` is allowed to be delayed before it's invoked.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new debounced function.
+ * @example
+ *
+ * // Avoid costly calculations while the window size is in flux.
+ * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+ *
+ * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+ * jQuery(element).on('click', _.debounce(sendMail, 300, {
+ *   'leading': true,
+ *   'trailing': false
+ * }));
+ *
+ * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+ * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+ * var source = new EventSource('/stream');
+ * jQuery(source).on('message', debounced);
+ *
+ * // Cancel the trailing debounced invocation.
+ * jQuery(window).on('popstate', debounced.cancel);
+ */
+function debounce(func, wait, options) {
+  var lastArgs,
+      lastThis,
+      maxWait,
+      result,
+      timerId,
+      lastCallTime,
+      lastInvokeTime = 0,
+      leading = false,
+      maxing = false,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  wait = toNumber(wait) || 0;
+  if (isObject(options)) {
+    leading = !!options.leading;
+    maxing = 'maxWait' in options;
+    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+
+  function invokeFunc(time) {
+    var args = lastArgs,
+        thisArg = lastThis;
+
+    lastArgs = lastThis = undefined;
+    lastInvokeTime = time;
+    result = func.apply(thisArg, args);
+    return result;
+  }
+
+  function leadingEdge(time) {
+    // Reset any `maxWait` timer.
+    lastInvokeTime = time;
+    // Start the timer for the trailing edge.
+    timerId = setTimeout(timerExpired, wait);
+    // Invoke the leading edge.
+    return leading ? invokeFunc(time) : result;
+  }
+
+  function remainingWait(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime,
+        result = wait - timeSinceLastCall;
+
+    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+  }
+
+  function shouldInvoke(time) {
+    var timeSinceLastCall = time - lastCallTime,
+        timeSinceLastInvoke = time - lastInvokeTime;
+
+    // Either this is the first call, activity has stopped and we're at the
+    // trailing edge, the system time has gone backwards and we're treating
+    // it as the trailing edge, or we've hit the `maxWait` limit.
+    return (lastCallTime === undefined || (timeSinceLastCall >= wait) ||
+      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+  }
+
+  function timerExpired() {
+    var time = now();
+    if (shouldInvoke(time)) {
+      return trailingEdge(time);
+    }
+    // Restart the timer.
+    timerId = setTimeout(timerExpired, remainingWait(time));
+  }
+
+  function trailingEdge(time) {
+    timerId = undefined;
+
+    // Only invoke if we have `lastArgs` which means `func` has been
+    // debounced at least once.
+    if (trailing && lastArgs) {
+      return invokeFunc(time);
+    }
+    lastArgs = lastThis = undefined;
+    return result;
+  }
+
+  function cancel() {
+    if (timerId !== undefined) {
+      clearTimeout(timerId);
+    }
+    lastInvokeTime = 0;
+    lastArgs = lastCallTime = lastThis = timerId = undefined;
+  }
+
+  function flush() {
+    return timerId === undefined ? result : trailingEdge(now());
+  }
+
+  function debounced() {
+    var time = now(),
+        isInvoking = shouldInvoke(time);
+
+    lastArgs = arguments;
+    lastThis = this;
+    lastCallTime = time;
+
+    if (isInvoking) {
+      if (timerId === undefined) {
+        return leadingEdge(lastCallTime);
+      }
+      if (maxing) {
+        // Handle invocations in a tight loop.
+        timerId = setTimeout(timerExpired, wait);
+        return invokeFunc(lastCallTime);
+      }
+    }
+    if (timerId === undefined) {
+      timerId = setTimeout(timerExpired, wait);
+    }
+    return result;
+  }
+  debounced.cancel = cancel;
+  debounced.flush = flush;
+  return debounced;
+}
+
+/**
+ * Creates a throttled function that only invokes `func` at most once per
+ * every `wait` milliseconds. The throttled function comes with a `cancel`
+ * method to cancel delayed `func` invocations and a `flush` method to
+ * immediately invoke them. Provide `options` to indicate whether `func`
+ * should be invoked on the leading and/or trailing edge of the `wait`
+ * timeout. The `func` is invoked with the last arguments provided to the
+ * throttled function. Subsequent calls to the throttled function return the
+ * result of the last `func` invocation.
+ *
+ * **Note:** If `leading` and `trailing` options are `true`, `func` is
+ * invoked on the trailing edge of the timeout only if the throttled function
+ * is invoked more than once during the `wait` timeout.
+ *
+ * If `wait` is `0` and `leading` is `false`, `func` invocation is deferred
+ * until to the next tick, similar to `setTimeout` with a timeout of `0`.
+ *
+ * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+ * for details over the differences between `_.throttle` and `_.debounce`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Function
+ * @param {Function} func The function to throttle.
+ * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+ * @param {Object} [options={}] The options object.
+ * @param {boolean} [options.leading=true]
+ *  Specify invoking on the leading edge of the timeout.
+ * @param {boolean} [options.trailing=true]
+ *  Specify invoking on the trailing edge of the timeout.
+ * @returns {Function} Returns the new throttled function.
+ * @example
+ *
+ * // Avoid excessively updating the position while scrolling.
+ * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+ *
+ * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+ * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+ * jQuery(element).on('click', throttled);
+ *
+ * // Cancel the trailing throttled invocation.
+ * jQuery(window).on('popstate', throttled.cancel);
+ */
+function throttle(func, wait, options) {
+  var leading = true,
+      trailing = true;
+
+  if (typeof func != 'function') {
+    throw new TypeError(FUNC_ERROR_TEXT);
+  }
+  if (isObject(options)) {
+    leading = 'leading' in options ? !!options.leading : leading;
+    trailing = 'trailing' in options ? !!options.trailing : trailing;
+  }
+  return debounce(func, wait, {
+    'leading': leading,
+    'maxWait': wait,
+    'trailing': trailing
+  });
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Converts `value` to a number.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to process.
+ * @returns {number} Returns the number.
+ * @example
+ *
+ * _.toNumber(3.2);
+ * // => 3.2
+ *
+ * _.toNumber(Number.MIN_VALUE);
+ * // => 5e-324
+ *
+ * _.toNumber(Infinity);
+ * // => Infinity
+ *
+ * _.toNumber('3.2');
+ * // => 3.2
+ */
+function toNumber(value) {
+  if (typeof value == 'number') {
+    return value;
+  }
+  if (isSymbol(value)) {
+    return NAN;
+  }
+  if (isObject(value)) {
+    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+    value = isObject(other) ? (other + '') : other;
+  }
+  if (typeof value != 'string') {
+    return value === 0 ? value : +value;
+  }
+  value = value.replace(reTrim, '');
+  var isBinary = reIsBinary.test(value);
+  return (isBinary || reIsOctal.test(value))
+    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+    : (reIsBadHex.test(value) ? NAN : +value);
+}
+
+module.exports = throttle;
 
 
 /***/ }),
@@ -68958,6 +70266,376 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-lazy-load/lib/LazyLoad.js":
+/*!******************************************************!*\
+  !*** ./node_modules/react-lazy-load/lib/LazyLoad.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var _eventlistener = __webpack_require__(/*! eventlistener */ "./node_modules/eventlistener/eventlistener.js");
+
+var _lodash = __webpack_require__(/*! lodash.debounce */ "./node_modules/lodash.debounce/index.js");
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _lodash3 = __webpack_require__(/*! lodash.throttle */ "./node_modules/lodash.throttle/index.js");
+
+var _lodash4 = _interopRequireDefault(_lodash3);
+
+var _parentScroll = __webpack_require__(/*! ./utils/parentScroll */ "./node_modules/react-lazy-load/lib/utils/parentScroll.js");
+
+var _parentScroll2 = _interopRequireDefault(_parentScroll);
+
+var _inViewport = __webpack_require__(/*! ./utils/inViewport */ "./node_modules/react-lazy-load/lib/utils/inViewport.js");
+
+var _inViewport2 = _interopRequireDefault(_inViewport);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LazyLoad = function (_Component) {
+  _inherits(LazyLoad, _Component);
+
+  function LazyLoad(props) {
+    _classCallCheck(this, LazyLoad);
+
+    var _this = _possibleConstructorReturn(this, (LazyLoad.__proto__ || Object.getPrototypeOf(LazyLoad)).call(this, props));
+
+    _this.lazyLoadHandler = _this.lazyLoadHandler.bind(_this);
+
+    if (props.throttle > 0) {
+      if (props.debounce) {
+        _this.lazyLoadHandler = (0, _lodash2.default)(_this.lazyLoadHandler, props.throttle);
+      } else {
+        _this.lazyLoadHandler = (0, _lodash4.default)(_this.lazyLoadHandler, props.throttle);
+      }
+    }
+
+    _this.state = { visible: false };
+    return _this;
+  }
+
+  _createClass(LazyLoad, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this._mounted = true;
+      var eventNode = this.getEventNode();
+
+      this.lazyLoadHandler();
+
+      if (this.lazyLoadHandler.flush) {
+        this.lazyLoadHandler.flush();
+      }
+
+      (0, _eventlistener.add)(window, 'resize', this.lazyLoadHandler);
+      (0, _eventlistener.add)(eventNode, 'scroll', this.lazyLoadHandler);
+
+      if (eventNode !== window) (0, _eventlistener.add)(window, 'scroll', this.lazyLoadHandler);
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      if (!this.state.visible) {
+        this.lazyLoadHandler();
+      }
+    }
+  }, {
+    key: 'shouldComponentUpdate',
+    value: function shouldComponentUpdate(_nextProps, nextState) {
+      return nextState.visible;
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this._mounted = false;
+      if (this.lazyLoadHandler.cancel) {
+        this.lazyLoadHandler.cancel();
+      }
+
+      this.detachListeners();
+    }
+  }, {
+    key: 'getEventNode',
+    value: function getEventNode() {
+      return (0, _parentScroll2.default)((0, _reactDom.findDOMNode)(this));
+    }
+  }, {
+    key: 'getOffset',
+    value: function getOffset() {
+      var _props = this.props,
+          offset = _props.offset,
+          offsetVertical = _props.offsetVertical,
+          offsetHorizontal = _props.offsetHorizontal,
+          offsetTop = _props.offsetTop,
+          offsetBottom = _props.offsetBottom,
+          offsetLeft = _props.offsetLeft,
+          offsetRight = _props.offsetRight,
+          threshold = _props.threshold;
+
+
+      var _offsetAll = threshold || offset;
+      var _offsetVertical = offsetVertical || _offsetAll;
+      var _offsetHorizontal = offsetHorizontal || _offsetAll;
+
+      return {
+        top: offsetTop || _offsetVertical,
+        bottom: offsetBottom || _offsetVertical,
+        left: offsetLeft || _offsetHorizontal,
+        right: offsetRight || _offsetHorizontal
+      };
+    }
+  }, {
+    key: 'lazyLoadHandler',
+    value: function lazyLoadHandler() {
+      if (!this._mounted) {
+        return;
+      }
+      var offset = this.getOffset();
+      var node = (0, _reactDom.findDOMNode)(this);
+      var eventNode = this.getEventNode();
+
+      if ((0, _inViewport2.default)(node, eventNode, offset)) {
+        var onContentVisible = this.props.onContentVisible;
+
+
+        this.setState({ visible: true }, function () {
+          if (onContentVisible) {
+            onContentVisible();
+          }
+        });
+        this.detachListeners();
+      }
+    }
+  }, {
+    key: 'detachListeners',
+    value: function detachListeners() {
+      var eventNode = this.getEventNode();
+
+      (0, _eventlistener.remove)(window, 'resize', this.lazyLoadHandler);
+      (0, _eventlistener.remove)(eventNode, 'scroll', this.lazyLoadHandler);
+
+      if (eventNode !== window) (0, _eventlistener.remove)(window, 'scroll', this.lazyLoadHandler);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _props2 = this.props,
+          children = _props2.children,
+          className = _props2.className,
+          height = _props2.height,
+          width = _props2.width;
+      var visible = this.state.visible;
+
+
+      var elStyles = { height: height, width: width };
+      var elClasses = 'LazyLoad' + (visible ? ' is-visible' : '') + (className ? ' ' + className : '');
+
+      return _react2.default.createElement(this.props.elementType, {
+        className: elClasses,
+        style: elStyles
+      }, visible && _react.Children.only(children));
+    }
+  }]);
+
+  return LazyLoad;
+}(_react.Component);
+
+exports["default"] = LazyLoad;
+
+
+LazyLoad.propTypes = {
+  children: _propTypes2.default.node.isRequired,
+  className: _propTypes2.default.string,
+  debounce: _propTypes2.default.bool,
+  elementType: _propTypes2.default.string,
+  height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  offset: _propTypes2.default.number,
+  offsetBottom: _propTypes2.default.number,
+  offsetHorizontal: _propTypes2.default.number,
+  offsetLeft: _propTypes2.default.number,
+  offsetRight: _propTypes2.default.number,
+  offsetTop: _propTypes2.default.number,
+  offsetVertical: _propTypes2.default.number,
+  threshold: _propTypes2.default.number,
+  throttle: _propTypes2.default.number,
+  width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
+  onContentVisible: _propTypes2.default.func
+};
+
+LazyLoad.defaultProps = {
+  elementType: 'div',
+  debounce: true,
+  offset: 0,
+  offsetBottom: 0,
+  offsetHorizontal: 0,
+  offsetLeft: 0,
+  offsetRight: 0,
+  offsetTop: 0,
+  offsetVertical: 0,
+  throttle: 250
+};
+
+/***/ }),
+
+/***/ "./node_modules/react-lazy-load/lib/utils/getElementPosition.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/react-lazy-load/lib/utils/getElementPosition.js ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = getElementPosition;
+/*
+* Finds element's position relative to the whole document,
+* rather than to the viewport as it is the case with .getBoundingClientRect().
+*/
+function getElementPosition(element) {
+  var rect = element.getBoundingClientRect();
+
+  return {
+    top: rect.top + window.pageYOffset,
+    left: rect.left + window.pageXOffset
+  };
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-lazy-load/lib/utils/inViewport.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/react-lazy-load/lib/utils/inViewport.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports["default"] = inViewport;
+
+var _getElementPosition = __webpack_require__(/*! ./getElementPosition */ "./node_modules/react-lazy-load/lib/utils/getElementPosition.js");
+
+var _getElementPosition2 = _interopRequireDefault(_getElementPosition);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var isHidden = function isHidden(element) {
+  return element.offsetParent === null;
+};
+
+function inViewport(element, container, customOffset) {
+  if (isHidden(element)) {
+    return false;
+  }
+
+  var top = void 0;
+  var bottom = void 0;
+  var left = void 0;
+  var right = void 0;
+
+  if (typeof container === 'undefined' || container === window) {
+    top = window.pageYOffset;
+    left = window.pageXOffset;
+    bottom = top + window.innerHeight;
+    right = left + window.innerWidth;
+  } else {
+    if (!inViewport(container, window, customOffset)) return false;
+
+    var containerPosition = (0, _getElementPosition2.default)(container);
+
+    top = containerPosition.top;
+    left = containerPosition.left;
+    bottom = top + container.offsetHeight;
+    right = left + container.offsetWidth;
+  }
+
+  var elementPosition = (0, _getElementPosition2.default)(element);
+
+  return top <= elementPosition.top + element.offsetHeight + customOffset.top && bottom >= elementPosition.top - customOffset.bottom && left <= elementPosition.left + element.offsetWidth + customOffset.left && right >= elementPosition.left - customOffset.right;
+}
+
+/***/ }),
+
+/***/ "./node_modules/react-lazy-load/lib/utils/parentScroll.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/react-lazy-load/lib/utils/parentScroll.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+var style = function style(element, prop) {
+  return typeof getComputedStyle !== 'undefined' ? getComputedStyle(element, null).getPropertyValue(prop) : element.style[prop];
+};
+
+var overflow = function overflow(element) {
+  return style(element, 'overflow') + style(element, 'overflow-y') + style(element, 'overflow-x');
+};
+
+var scrollParent = function scrollParent(element) {
+  if (!(element instanceof HTMLElement)) {
+    return window;
+  }
+
+  var parent = element;
+
+  while (parent) {
+    if (parent === document.body || parent === document.documentElement) {
+      break;
+    }
+
+    if (!parent.parentNode) {
+      break;
+    }
+
+    if (/(scroll|auto)/.test(overflow(parent))) {
+      return parent;
+    }
+
+    parent = parent.parentNode;
+  }
+
+  return window;
+};
+
+exports["default"] = scrollParent;
+
+/***/ }),
+
 /***/ "./node_modules/react-use/esm/usePrevious.js":
 /*!***************************************************!*\
   !*** ./node_modules/react-use/esm/usePrevious.js ***!
@@ -76623,6 +78301,10 @@ var map = {
 	"./Employees/Burn.js": "./resources/js/Pages/Employees/Burn.js",
 	"./Employees/Index": "./resources/js/Pages/Employees/Index.js",
 	"./Employees/Index.js": "./resources/js/Pages/Employees/Index.js",
+	"./EmployeesAttendance/Burn": "./resources/js/Pages/EmployeesAttendance/Burn.js",
+	"./EmployeesAttendance/Burn.js": "./resources/js/Pages/EmployeesAttendance/Burn.js",
+	"./EmployeesAttendance/Index": "./resources/js/Pages/EmployeesAttendance/Index.js",
+	"./EmployeesAttendance/Index.js": "./resources/js/Pages/EmployeesAttendance/Index.js",
 	"./Equipments": "./resources/js/Pages/Equipments.js",
 	"./Equipments.js": "./resources/js/Pages/Equipments.js",
 	"./Users/Create": "./resources/js/Pages/Users/Create.js",

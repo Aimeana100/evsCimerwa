@@ -53,19 +53,6 @@ function Sidebar({ showSidebar, setShowSidebar }) {
 
                             <li className="rounded-lg mb-4">
                                 <NavLink
-                                    href={route("users")}
-                                    active={route().current("users")}
-
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="dashboard" size="2xl" />
-
-                                    Users
-                                </NavLink>
-                            </li>
-
-                            <li className="rounded-lg mb-4">
-                                <NavLink
                                     href={route("vistors")}
                                     active={route().current("vistors")}
 
@@ -79,6 +66,47 @@ function Sidebar({ showSidebar, setShowSidebar }) {
 
                             <li className="rounded-lg mb-4">
                                 <NavLink
+                                    href={route("employees")}
+                                    active={route().current("employees")}
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="dashboard" size="2xl" />
+                                    Employees
+                                </NavLink>
+                            </li>
+
+
+
+                            <li className="rounded-lg mb-4">
+                                <NavLink
+                                    href={route("employeesAttendance")}
+                                    active={route().current("employeesAttendance")}
+
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="dashboard" size="2xl" />
+                                    Emp. Attendance
+                                </NavLink>
+                            </li>
+
+
+                            <li className="rounded-lg mb-4">
+                                <NavLink
+                                    href={route("users")}
+                                    active={route().current("users")}
+
+                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
+                                >
+                                    <Icon name="dashboard" size="2xl" />
+
+                                    Users
+                                </NavLink>
+                            </li>
+
+
+
+                            <li className="rounded-lg mb-4">
+                                <NavLink
                                     href={route("companies")}
                                     active={route().current("companies")}
 
@@ -88,19 +116,6 @@ function Sidebar({ showSidebar, setShowSidebar }) {
                                     Companies
                                 </NavLink>
                             </li>
-
-                            <li className="rounded-lg mb-4">
-                                <NavLink
-                                    href={route("employees")}
-                                    active={route().current("employees")}
-
-                                    activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                                >
-                                    <Icon name="dashboard" size="2xl" />
-                                    Employees
-                                </NavLink>
-                            </li>
-
 
                             <li className="rounded-lg mb-4">
                                 <NavLink

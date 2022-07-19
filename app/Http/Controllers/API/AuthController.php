@@ -79,6 +79,7 @@ class AuthController extends Controller
                 $employee->phone = $request->phonenumber;
                 $employee->ID_Card = $request->idnumber;
                 $employee->company = $request->residance;
+                $employee->category = $request->category;
                 $employee->status = "IN";
                 $employee->dateJoined = $currentTime;
                 $employee->latestTap = $currentTime;
