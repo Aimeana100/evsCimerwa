@@ -18,13 +18,13 @@ const Index = () => {
 
     return (
         <>
-            <div className="md:ml-64 pt-10">
-                <h1 className="mb-8 text-3xl font-bold">Users</h1>
+            <div className="md:ml-64 pt-2">
+                {/* <h1 className="mb-8 text-3xl font-bold">Users</h1> */}
                 <div className="flex items-center justify-between mb-6">
                     {/* <SearchFilter /> */}
 
                     <InertiaLink
-                        className="btn-indigo focus:outline-none"
+                        className="btn-indigo focus:outline-none float-right rounded-full bg-indigo-200 p-2 self-end"
                         href={route("users.create")}
                     >
                         <span>Create</span>

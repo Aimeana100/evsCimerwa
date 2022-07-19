@@ -6,10 +6,21 @@ import Image from '@material-tailwind/react/Image';
 import Dropdown from '@material-tailwind/react/Dropdown';
 import DropdownItem from '@material-tailwind/react/DropdownItem';
 import ProfilePicture from '../assets/images/user.png'; 
+import { useLocation } from 'react-use';
+import { useForm } from '@inertiajs/inertia-react';
 
 export default function AdminNavbar({ showSidebar, setShowSidebar }) {
 
-    // const location = useLocation().pathname;
+    // const { post, processing } = useForm({
+    //     _token: this.$page.props.csrf_token,
+    //     });
+
+    function handleLogout(e) {
+        e.preventDefault();
+        post(route("logout"));
+    }
+
+    const location = useLocation().pathname;
 
     const logout = e =>{
         post('logout');
@@ -51,10 +62,10 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
 
                 <div className="flex pr-0 justify-between items-center w-full">
                     <h4 className="uppercase text-white text-sm tracking-wider mt-1">
-                        {/* {location === '/'
+                        {location === '/'
                             ? 'DASHBOARD'
-                            : location.toUpperCase().replace('/', '')} */}
-                            DASHBOARD
+                            : location.toUpperCase().replace('/', '')}
+                            {/* DASHBOARD */}
                     </h4>
 
                     <div className="flex justify-between">
@@ -80,9 +91,12 @@ export default function AdminNavbar({ showSidebar, setShowSidebar }) {
                                 <DropdownItem color="lightBlue">
                                     Change password
                                 </DropdownItem>
-                                <DropdownItem onClick={logout} color="lightBlue">
+                                <DropdownItem onClick={handleLogout} color="lightBlue">
                                     Logout
                                 </DropdownItem>
+                                <form >
+
+                                </form>
                             </Dropdown>
                         </div>
                     </div>

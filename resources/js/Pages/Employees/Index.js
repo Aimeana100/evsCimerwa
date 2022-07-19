@@ -16,8 +16,8 @@ const Index = () => {
 
     return (
         <>
-            <div className="md:ml-64 pt-10">
-                <h1 className="mb-8 text-3xl font-bold">Employees</h1>
+            <div className="md:ml-64 pt-2">
+                {/* <h1 className="mb-8 text-3xl font-bold">Employees</h1> */}
                 <div className="flex items-center w-full justify-between mb-6">
                     <Search />
 

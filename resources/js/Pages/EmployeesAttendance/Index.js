@@ -3,12 +3,119 @@ import Authenticated from "@/Layouts/Authenticated";
 import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 import { Head } from "@inertiajs/inertia-react";
 import Layout, { createDateString, getTapsFiltered } from "@/Layouts/Layout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component } from "react";
 import { Button, ClosingAlert, Icon } from "@material-tailwind/react";
 import { usePrevious } from "react-use";
 import Label from "@/Components/Label";
 import pickBy from "lodash/pickBy";
 import { Inertia } from "@inertiajs/inertia";
+import { show_tap_formated } from "../Vistors/Index";
+
+
+
+class Taps extends Component {
+    render() {
+        var createDateString = (dates) => {
+            var date = new Date(dates); //M-D-YYYY;
+            var mm = date.getMinutes();
+            var hh = date.getHours();
+
+            var dateString =
+                (hh <= 9 ? "0" + hh : hh) + ":" + (mm <= 9 ? "0" + mm : mm);
+
+            return dateString;
+        };
+
+        var taps = this.props.taps;
+
+        // console.log(taps);
+
+        var neObj = taps.reduce((prv, curr) => {
+            var key = curr.status;
+            if (!prv[key]) {
+                prv[key] = [];
+            }
+
+            prv[key].push(createDateString(curr.tapped_at));
+            return prv;
+        }, {});
+
+        const { ENTERING, EXITING } = neObj;
+
+        const getL = (dt) => {
+            const { ENTERING, EXITING } = dt;
+
+            if (typeof ENTERING == "undefined") {
+                return EXITING;
+            } else if (typeof EXITING == "undefined") {
+                return ENTERING;
+            } else {
+                return ENTERING.length > EXITING.length ? ENTERING : EXITING;
+            }
+        };
+
+        return (
+            <table>
+                <tbody className="grid grid-cols-1 divide-red-800 divide-y">
+                    <TapsRow timeRange={4} taprow={neObj} />
+                </tbody>
+            </table>
+        );
+    }
+}
+
+class TapsRow extends Component {
+    render() {
+        var rows = this.props.taprow;
+
+        const { ENTERING, EXITING } = rows;
+
+        const getL = (dt) => {
+            const { ENTERING, EXITING } = dt;
+
+            if (typeof ENTERING == "undefined") {
+                return EXITING;
+            } else if (typeof EXITING == "undefined") {
+                return ENTERING;
+            } else {
+                return ENTERING.length > EXITING.length ? ENTERING : EXITING;
+            }
+        };
+
+        // console.log(date_diff_indays(rows));
+
+        var largeArr = getL(rows);
+
+        return largeArr.map((item, index) => {
+            return (
+                <tr className="relative" key={index}>
+                    {typeof ENTERING != "undefined" && typeof ENTERING[index] && (
+                        <td className="relative bg-zinc-200  border border-red-100 rounded-2 bg-gradient-to-r from-zinc-200 to-zinc-400 ">
+                            <span className="relative pr-1 text-[11px]">
+                                <span className="absolute rounded-full w-[5px] h-[5px] mx-1  bg-blue-700 -right-1 -top-[1/2]"></span>
+                                {ENTERING[index]}
+                            </span>
+                        </td>
+                    )}
+
+                    {typeof EXITING != "undefined" && typeof EXITING[index] && (
+                        <td className="relative ml-1 bg-gradient-to-r  from-blue-300 to-blue-100">
+                            <span className="relative pr-1 text-[11px]">
+                                <span className="absolute rounded-full w-[5px] h-[5px] mx-1  bg-green-700 -right-1 -bottom-1"></span>
+
+                                {EXITING[index]}
+                            </span>
+                        </td>
+                    )}
+                </tr>
+            );
+        });
+    }
+}
+
+
+
+
 
 const Index = () => {
     const { employees, taps, filters, flash } = usePage().props;
@@ -32,10 +139,10 @@ const Index = () => {
     const [employeeData, setEmployeeData] = useState([]);
 
     const shifts = {
-        sh1:{from:8, to:13},
-        sh2:{from:13, to:21},
-        sh3:{from:21, to:23},
-    }
+        sh1: { from: 8, to: 13 },
+        sh2: { from: 13, to: 21 },
+        sh3: { from: 21, to: 23 },
+    };
 
     const prevValues = usePrevious(values);
 
@@ -180,60 +287,71 @@ const Index = () => {
     console.log(employeeData);
 
     const shift1 = orderedData
-    .filter((el, i) => {
-        return (
-            el.date ==
-            createDateString(values.onDate).toString()
-        );
-    }).map((todaysEl, id) =>{
-        return {
-            ...todaysEl,records: todaysEl.records.filter((el, i)=>{el.taps.filter(tapEl => (new Date(tapEl.tapped_at).getHours) > shifts.sh1.from && (new Date(tapEl.tapped_at).getHours) < shifts.sh1.to)})
-        } 
-    })
+        .filter((el, i) => {
+            return el.date == createDateString(values.onDate).toString();
+        })
+        .map((todaysEl, id) => {
+            return {
+                ...todaysEl,
+                records: todaysEl.records.filter((el, i) => {
+                    el.taps.filter(
+                        (tapEl) =>
+                            new Date(tapEl.tapped_at).getHours >
+                                shifts.sh1.from &&
+                            new Date(tapEl.tapped_at).getHours < shifts.sh1.to
+                    );
+                }),
+            };
+        });
 
     const shift2 = orderedData
-    .filter((el, i) => {
-        return (
-            el.date ==
-            createDateString(values.onDate).toString()
-        );
-    }).map((todaysEl, id) =>{
-        return {
-            ...todaysEl,records: todaysEl.records.filter((el, i)=>{el.taps.filter(tapEl => (new Date(tapEl.tapped_at).getHours) > shifts.sh2.from && (new Date(tapEl.tapped_at).getHours) < shifts.sh.to)})
-        } 
-    })
-
+        .filter((el, i) => {
+            return el.date == createDateString(values.onDate).toString();
+        })
+        .map((todaysEl, id) => {
+            return {
+                ...todaysEl,
+                records: todaysEl.records.filter((el, i) => {
+                    el.taps.filter(
+                        (tapEl) =>
+                            new Date(tapEl.tapped_at).getHours >
+                                shifts.sh2.from &&
+                            new Date(tapEl.tapped_at).getHours < shifts.sh.to
+                    );
+                }),
+            };
+        });
 
     const shift3 = orderedData
-    .filter((el, i) => {
-        return (
-            el.date ==
-            createDateString(values.onDate).toString()
-        );
-    }).map((todaysEl, id) =>{
-        return {
-            ...todaysEl,records: todaysEl.records.filter((el, i)=>{el.taps.filter(tapEl => (new Date(tapEl.tapped_at).getHours) > shifts.sh3.from && (new Date(tapEl.tapped_at).getHours) < shifts.sh3.to)})
-        } 
-    })
+        .filter((el, i) => {
+            return el.date == createDateString(values.onDate).toString();
+        })
+        .map((todaysEl, id) => {
+            return {
+                ...todaysEl,
+                records: todaysEl.records.filter((el, i) => {
+                    el.taps.filter(
+                        (tapEl) =>
+                            new Date(tapEl.tapped_at).getHours >
+                                shifts.sh3.from &&
+                            new Date(tapEl.tapped_at).getHours < shifts.sh3.to
+                    );
+                }),
+            };
+        });
 
-    const shif = orderedData
-    .filter((el, i) => {
-        return (
-            el.date ==
-            createDateString(values.onDate).toString()
-        );
+    const shif = orderedData.filter((el, i) => {
+        return el.date == createDateString(values.onDate).toString();
     })[0];
 
-//    const shift4 = {shif, records:shif.records}; 
-    
-
+    //    const shift4 = {shif, records:shif.records};
 
     // console.log(shif.date);
 
     return (
         <>
-            <div className="md:ml-64 pt-10">
-                <h1 className="mb-8 text-3xl font-bold">Employees</h1>
+            <div className="md:ml-64 pt-2">
+                {/* <h1 className="mb-8 text-3xl font-bold">Employees</h1> */}
                 <div className="flex items-center w-full justify-between mb-6">
                     {/* serarch filter */}
 
@@ -311,14 +429,13 @@ const Index = () => {
                                     className="rounded  py-3 px-2 text-[12px]"
                                 >
                                     SHT[13:00-21:00]
-
                                 </option>
-                                    <option
-                                        value="inGate"
-                                        className="rounded    py-3 px-2 text-[12px]"
-                                    >
+                                <option
+                                    value="inGate"
+                                    className="rounded    py-3 px-2 text-[12px]"
+                                >
                                     SHT[21:00-22:59]
-                                    </option>
+                                </option>
                             </select>
                         </div>
 
@@ -341,7 +458,7 @@ const Index = () => {
                                 />
                             </div>
                         </div>
-{/* 
+                        {/* 
                         // <div className="flex p-0 md:p-2 flex-1 justify-end self-end">
                         //     <div className="flex w-fit border bg-slate-200 rounded-full py-1 px-3 ">
                         //         <Label
@@ -377,8 +494,8 @@ const Index = () => {
                                 <th className="px-6 pt-5 pb-4">Telphone</th>
                                 <th className="px-6 pt-5 pb-4">Gender</th>
                                 <th className="px-6 pt-5 pb-4">Category</th>
-                                <th className="px-6 pt-5 pb-4">State </th>
-                                <th className="px-6 pt-5 pb-4">Tools</th>
+                                <th className="px-6 pt-5 pb-4">Movement </th>
+                                <th className="px-6 pt-5 pb-4">Time-Range</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -392,6 +509,7 @@ const Index = () => {
                                         gender,
                                         state,
                                         category,
+                                        taps,
                                     }) => {
                                         return (
                                             <tr
@@ -401,7 +519,7 @@ const Index = () => {
                                                 <td className="border-t">
                                                     {names}
                                                 </td>
-                                                <td className="border-t flex items-center px-6 py-4 focus:text-indigo-700 focus:outline-none">
+                                                <td className="border-t ">
                                                     {ID_Card}
                                                 </td>
 
@@ -414,12 +532,11 @@ const Index = () => {
                                                 <td className="border-t">
                                                     {category}
                                                 </td>
-                                                <td className="border-t">
-                                                    {state == true
-                                                        ? "Activeted"
-                                                        : "burned"}
+                                                <td className="border-t text-[12px]">
+                                                    <Taps taps={taps} />
                                                 </td>
                                                 <td className="border-t">
+                                                    {/*                                                     
                                                     {state == true ? (
                                                         <InertiaLink
                                                             href={route(
@@ -444,7 +561,9 @@ const Index = () => {
                                                                 Revoke{" "}
                                                             </Button>
                                                         </InertiaLink>
-                                                    )}
+                                                    )} */}
+
+                                                    {show_tap_formated(taps)}
                                                 </td>
                                             </tr>
                                         );

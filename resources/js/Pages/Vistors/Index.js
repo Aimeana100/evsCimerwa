@@ -69,7 +69,7 @@ class TableComponent extends Component {
                                         <Taps taps={row.taps} />
                                     </td>
                                     <td className="border-t text-[12px]">
-                                        {tap(row.taps)}
+                                        {show_tap_formated(row.taps)}
                                     </td>
                                 </tr>
                             );
@@ -81,7 +81,7 @@ class TableComponent extends Component {
     }
 }
 
-function tap(tp) {
+ export function show_tap_formated(tp) {
     let i = 0;
     let diffMinutes = [];
     if (tp[0].status == "ENTERING" && tp.length % 2 == 0) {
@@ -155,6 +155,7 @@ class TapsRow extends Component {
     }
 }
 
+
 class Taps extends Component {
     render() {
         var createDateString = (dates) => {
@@ -206,6 +207,8 @@ class Taps extends Component {
     }
 }
 
+
+
 const Index = () => {
     const { vistors, taps, filters } = usePage().props;
     const {
@@ -218,6 +221,7 @@ const Index = () => {
     const [values, setValues] = useState({
         searchFrom: filters.searchFrom || "",
         selected: filters.selected || "",
+        card: filters.card || "",
     });
 
     const [vistorsData, setVisitorsData] = useState([]);
@@ -270,6 +274,31 @@ const Index = () => {
                 return;
             }
 
+            if (values.selected == "withId") {
+                const visitorOut = orderedData.map((el, index) => {
+                    return {
+                        ...el,
+                        records: el.records.filter(
+                            (elementToFilter) => elementToFilter.reason == "OWNS"
+                        ),
+                    };
+                });
+                setVisitorsData(visitorOut);
+                return;
+            }
+            if (values.selected == "noId") {
+                const visitorOut = orderedData.map((el, index) => {
+                    return {
+                        ...el,
+                        records: el.records.filter(
+                            (elementToFilter) => elementToFilter.reason != "OWNS"
+                        ),
+                    };
+                });
+                setVisitorsData(visitorOut);
+                return;
+            }
+
             if (values.searchFrom != "" && orderedData.filter((elF, i) => elF.date == values.searchFrom).length != 0) {
                 const visitorDate = orderedData.filter((elM, index) => {
                     return elM.date == values.searchFrom;
@@ -281,19 +310,21 @@ const Index = () => {
             //     setVisitorsData(orderedData);
             //     return;
             // }
+
         } else {
             setVisitorsData(orderedData);
         }
     }, [values]);
 
+
     return (
         <>
-            <div className="md:ml-64 pt-10">
-                <h1 className="mb-8 text-3xl font-bold">Vistors </h1>
+            <div className="md:ml-64 pt-2">
+                {/* <h1 className="mb-8 text-3xl font-bold">Vistors </h1> */}
                 <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center w-full justify-between mb-6">
                         <div className="flex justify-between align-baseline flex-col md:flex-row p-2 rounded-md bg-slate-300 w-full ">
-                            <div className="flex bg-[#dddde7ee] p-2 w-60">
+                            <div className="flex p-2 w-60">
                                 <Label
                                     color="primary"
                                     className="bg-[#dcdceeee] rounded-none px-20 "
@@ -328,21 +359,20 @@ const Index = () => {
                                 </select>
                             </div>
 
-
-                            <div className="flex bg-[#dddde7ee] p-2 flex-1 justify-end">
-                                <div className="flex md:flex-col flex-row min-w-fit border bg-slate-200 py-1 px-3">
+                            <div className="flex p-2 flex-1 justify-end">
+                                <div className="flex w-fit border bg-slate-200 rounded-full py-1 px-3">
                                     <Label
                                         color="primary"
-                                        for="search"
-                                        className="bg-slate-200 px-2 md:px-18 "
+                                        for="card"
+                                        className="bg-slate-200  px-2 md:px-18 "
                                     >
-                                        Shifts
+                                        ID {"&"} no-ID 
                                     </Label>
 
                                     <select
-                                    value={values.shifts}
-                                    name="shifts"
-                                    // onChange={handleChange}
+                                    value={values.card}
+                                    name="card"
+                                    onChange={handleChange}
 
                                     className="w-lg-50 p-1 w-full bg-slate-100 border-0 text-[13px]"
                                     >
@@ -354,24 +384,17 @@ const Index = () => {
                                     </option>
 
                                     <option
-                                        value="inGate"
+                                        value="withId"
                                         className="p-1 md:py-2 md:px-2 text-[12px]"
                                     >
-                                        Shifts 1
+                                        With Id
                                     </option>
 
                                     <option
-                                        value="outGate"
+                                        value="noId"
                                         className="p-1 md:py-2 md:px-2 text-[12px]"
                                     >
-                                        Shifts 2
-                                    </option>
-
-                                    <option
-                                        value="outGate"
-                                        className="p-1 md:py-2 md:px-2 text-[12px]"
-                                    >
-                                        Shifts 3
+                                        No Id
                                     </option>
 
                                 </select>
@@ -380,7 +403,7 @@ const Index = () => {
                             </div>
 
 
-                            <div className="flex bg-[#dddde7ee] p-2 flex-1 justify-end self-end">
+                            <div className="flex p-2 flex-1 justify-end self-end">
                                 <div className="flex w-fit border bg-slate-200 rounded-full py-1 px-3 ">
                                     <Label
                                         color="primary"
@@ -404,7 +427,7 @@ const Index = () => {
                     </div>
                 </div>
 
-                {vistorsData.map((item, index, arr) => {
+                {vistorsData.reverse().map((item, index, arr) => {
                     return (
                         <div>
 
