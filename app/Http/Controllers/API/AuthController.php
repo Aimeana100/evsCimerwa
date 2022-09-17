@@ -224,17 +224,14 @@ class AuthController extends Controller
                 if (!$visitor_staff) {
 
                     $visitor->names = $request[$i]['fullname'];
-                    $visitor->gender = $request[$i]['gender'];
+                    // $visitor->gender = $request[$i]['gender'];
                     $visitor->phone = $request[$i]['phonenumber'];
-                    $visitor->phone = $request[$i]['category'];
                     $visitor->ID_Card = $request[$i]['idnumber'];
                     $visitor->destination = $request[$i]['destination'];
                     $visitor->reason = "OWNS";
                     $visitor->status = "IN";
                     $visitor->dateJoined = $tap_date;
                     $visitor->latestTap = $tap_date;
-
-                    // return response()->json(["data" => $visitor->save()]);
 
                     try {
 
@@ -252,7 +249,6 @@ class AuthController extends Controller
                         return response()->json(["error" => $th->errorInfo], 500);
                     }
 
-                    // return response()->json(["data" => ["user" => "VISITOR", "previousTap" => null, "status" => "ENTERING"]], 200);
                 } else {
 
                     $existing_record = Vistor::where(['ID_Card' => $request[$i]['idnumber']])->get();
@@ -331,7 +327,6 @@ class AuthController extends Controller
 
                 $employee_staff = Employee::where(['ID_Card' => $request[$i]['idnumber']])->first();
 
-
                 // if (!in_array($request->reason, ["OWNS", "LOST", "UNDER"])) {
                 //     return response()->json(["data" => $request->all(), "status" => "error", "message" => "Reason Error"], 201);
                 // }
@@ -340,12 +335,13 @@ class AuthController extends Controller
                 if (!$employee_staff) {
 
                     $employee->names = $request[$i]['fullname'];
-                    $employee->gender = $request[$i]['gender'];
+                    // $employee->gender = $request[$i]['gender'];
                     $employee->phone = $request[$i]['phonenumber'];
                     $employee->phone = $request[$i]['category'];
                     $employee->ID_Card = $request[$i]['idnumber'];
                     $employee->department = $request[$i]['department'];
-                    $employee->reason = "OWNS";
+                    $employee->category = $request[$i]['category'];
+                    // $employee->reason = "OWNS";
                     $employee->status = "IN";
                     $employee->dateJoined = $tap_date;
                     $employee->latestTap = $tap_date;
@@ -370,7 +366,7 @@ class AuthController extends Controller
                     // return response()->json(["data" => ["user" => "VISITOR", "previousTap" => null, "status" => "ENTERING"]], 200);
                 } else {
 
-                    $existing_record = Vistor::where(['ID_Card' => $request[$i]['idnumber']])->get();
+                    $existing_record = Employee::where(['ID_Card' => $request[$i]['idnumber']])->first();
 
                     if ($employee_staff->latestTap == $request[$i]['tappedAt']) {
 

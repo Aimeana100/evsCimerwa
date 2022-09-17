@@ -16,7 +16,6 @@ class CreateVistorsTable extends Migration
         Schema::create('vistors', function (Blueprint $table) {
             $table->id();
             $table->string('names');
-            $table->string('gender',10);
             $table->string('ID_Card',100)->nullable()->comment('NID or custom Card ID');
             $table->string('phone')->nullable();
             $table->string('issuedate')->nullable();

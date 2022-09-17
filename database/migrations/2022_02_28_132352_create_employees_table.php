@@ -16,8 +16,9 @@ class CreateEmployeesTable extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->string('names');
-            $table->string('gender', 10);
+            $table->string('gender', 10)->nullable();
             $table->string('category');
+            $table->string('department');
             $table->string('phone')->nullable();
             $table->string('ID_Card')->comment('ID number');
             $table->string('company')->comment('the company that the labour from')->default('CIMERWA');
