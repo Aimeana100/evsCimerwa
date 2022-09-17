@@ -39,6 +39,9 @@ class EmployeeController extends Controller
                 ->appends($request->all())
         );
 
+        // dd($employees);
+
+
         return Inertia::render('EmployeesAttendance/Index', ['employees' => $employees, 'filters' => $filters]);
     }
 
@@ -48,5 +51,22 @@ class EmployeeController extends Controller
         $employee->update(['state' => !$employee->state]);
 
         return Redirect::back()->with('success', 'Employee State has ' . $message);
+    }
+
+    public function employeeOne(Request $request, $id){
+        $filters = $request->all('search', 'selected', 'onDate');
+        $employees = new EmployeeCollection(
+            Employee::where('id', $id)->filter(
+                $request->all('search', 'selected')
+            )
+                ->paginate()
+                ->appends($request->all() )
+        );
+
+        // dd($employees);
+
+
+
+        return Inertia::render('EmployeesAttendance/Employee', ['employees' => $employees, 'filters' => $filters]);
     }
 }

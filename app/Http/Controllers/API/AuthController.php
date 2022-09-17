@@ -33,16 +33,17 @@ class AuthController extends Controller
             return response()->json(["data" => ["user" => null, 'result' => "error", "message" => "Unknown Error"]], 200);
         }
     }
+
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', Rules\Password::min(8)
-            ->letters()
-            ->mixedCase()
-            ->numbers()
-            ->symbols()],
+                ->letters()
+                ->mixedCase()
+                ->numbers()
+                ->symbols()],
             // 'NID' => 'required|string|max:16',
         ]);
 
@@ -54,7 +55,6 @@ class AuthController extends Controller
         ]);
     }
 
-
     public function tap(Request $request)
     {
         date_default_timezone_set('Africa/kigali');
@@ -64,7 +64,6 @@ class AuthController extends Controller
         $visitor = new Vistor();
 
         $currentTime = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
-
 
         // return response()->json(["data" => $request->key]);
 
@@ -105,7 +104,7 @@ class AuthController extends Controller
                 $tap->status =  $staff[0]['status'] == "IN" ? "EXITING" : "ENTERING";
                 Employee::where('ID_Card', $staff[0]['ID_Card'])->update(['status' => $staff[0]['status'] == "IN" ? "OUT" : "IN"]);
                 Employee::where('ID_Card', $staff[0]['ID_Card'])->update(['latestTap' => $currentTime]);
-               
+
                 // $staff[0]->status = $staff[0]->status == "OUT" ? "IN" : "OUT";
                 try {
                     $tap->save();
@@ -116,14 +115,13 @@ class AuthController extends Controller
             }
         }
 
-
         //     \\ 
         // Vistor \\
 
         if ($request->key === "visitor") {
 
             $visitor_staff = Vistor::where(['ID_Card' => $request->idnumber])->get();
-            
+
 
             // if (!in_array($request->reason, ["OWNS", "LOST", "UNDER"])) {
             //     return response()->json(["data" => $request->all(), "status" => "error", "message" => "Reason Error"], 201);
@@ -163,7 +161,7 @@ class AuthController extends Controller
                 $tap->card_type = "STAFF";
                 $tap->status =  $visitor_staff[0]['status'] == "IN" ? "EXITING" : "ENTERING";
                 Vistor::where('ID_Card', $visitor_staff[0]['ID_Card'])->update(['status' => $visitor_staff[0]['status'] == "IN" ? "OUT" : "IN"]);
-                Vistor::where('ID_Card', $visitor_staff[0]['ID_Card'])->update(['latestTap' => $currentTime ]);
+                Vistor::where('ID_Card', $visitor_staff[0]['ID_Card'])->update(['latestTap' => $currentTime]);
 
                 try {
                     $tap->save();
@@ -182,6 +180,252 @@ class AuthController extends Controller
             return response()->json(["data" => ['result' => "no id"]]);
         }
     }
+
+
+    public function syncVisitor(Request $request)
+    {
+
+        //\\ 
+        // Vistor\\
+        //\\
+        //  \\
+
+        date_default_timezone_set('Africa/kigali');
+
+        if( !is_array($request->all()) ){
+            return response()->json(["result"=> "error", "message" =>"bad format"]);
+        }
+        
+        // if ($request->key === "visitor") {
+
+            $currentTime = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+            $affectedRows = 0;
+            $existingRecords = [];
+
+     
+
+            for ($i = 0; $i < count($request->all()); $i++) {
+
+                // return response()->json(["cardTaps"=> count(CardTap::all()), "visitor"=> count(Vistor::all()) ]);
+
+                $tap_date = $request[$i]['tappedAt'];
+
+                $tap = new CardTap();
+                $visitor = new Vistor();
+
+                $visitor_staff = Vistor::where(['ID_Card' => $request[$i]['idnumber']])->first();
+
+
+                // if (!in_array($request->reason, ["OWNS", "LOST", "UNDER"])) {
+                //     return response()->json(["data" => $request->all(), "status" => "error", "message" => "Reason Error"], 201);
+                // }
+
+
+                if (!$visitor_staff) {
+
+                    $visitor->names = $request[$i]['fullname'];
+                    $visitor->gender = $request[$i]['gender'];
+                    $visitor->phone = $request[$i]['phonenumber'];
+                    $visitor->phone = $request[$i]['category'];
+                    $visitor->ID_Card = $request[$i]['idnumber'];
+                    $visitor->destination = $request[$i]['destination'];
+                    $visitor->reason = "OWNS";
+                    $visitor->status = "IN";
+                    $visitor->dateJoined = $tap_date;
+                    $visitor->latestTap = $tap_date;
+
+                    // return response()->json(["data" => $visitor->save()]);
+
+                    try {
+
+                        $visitor->save();
+                        $tap->user_id = $visitor->id;
+                        $tap->ID_Card = $visitor->ID_Card;
+                        $tap->tapped_at = $request[$i]['tappedAt'];
+                        $tap->card_type = "VISTOR";
+                        $tap->status = "ENTERING";
+
+                        if ($tap->save()) {
+                            $affectedRows++;
+                        }
+                    } catch (\Throwable $th) {
+                        return response()->json(["error" => $th->errorInfo], 500);
+                    }
+
+                    // return response()->json(["data" => ["user" => "VISITOR", "previousTap" => null, "status" => "ENTERING"]], 200);
+                } else {
+
+                    $existing_record = Vistor::where(['ID_Card' => $request[$i]['idnumber']])->get();
+
+                    if ($visitor_staff->latestTap == $request[$i]['tappedAt']) {
+
+                        // return response()->json(["data" => "skipped"]);
+
+                        $affectedRows++;
+                        array_push($existingRecords, $existing_record);
+
+                        continue;
+                    } else {
+
+                        $tap->user_id = $visitor_staff['id'];
+                        $tap->ID_Card = $visitor_staff['ID_Card'];
+                        $tap->tapped_at = $request[$i]['tappedAt'];
+                        $tap->card_type = "VISITOR";
+                        $tap->status =  $visitor_staff['status'] == "IN" ? "EXITING" : "ENTERING";
+                        Vistor::where('ID_Card', $visitor_staff['ID_Card'])->update(['status' => $visitor_staff['status'] == "IN" ? "OUT" : "IN"]);
+                        Vistor::where('ID_Card', $visitor_staff['ID_Card'])->update(['latestTap' => $tap_date]);
+
+                        try {
+                            if ($tap->save()) {
+                                $affectedRows++;
+                            }
+                        } catch (\Throwable $th) {
+                            return response()->json(["error" => $th->errorInfo], 500);
+                        }
+
+                        // return response()->json(["data" => ["user" => "VISITOR", "status" => "Updated"]]);
+                    }
+                }
+
+                // return response()->json(["data" => $request->all('key')]);
+
+            }
+
+            return response()->json(["result"=> "ok", "affected" => $affectedRows, "repeated" => $existingRecords]);
+        // }
+        
+        
+        // else {
+
+        //     return response()->json(['result' => "no id"]);
+        // }
+    }
+
+    public function syncEmployee(Request $request)
+    {
+
+
+        //\\ 
+        // Vistor\\
+        //\\
+        //  \\
+        // if ($request->key === "visitor") {
+
+            if( !is_array($request->all()) ){
+                return response()->json(["result"=> "error", "message" =>"bad format"]);
+            }
+            
+
+            $currentTime = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
+            $affectedRows = 0;
+            $existingRecords = [];
+
+            // return response()->json($request->all());
+
+            for ($i = 0; $i < count($request->all()); $i++) {
+
+                $tap_date = $request[$i]['tappedAt'];
+
+                $tap = new CardTap();
+                $employee = new Employee();
+
+                $employee_staff = Employee::where(['ID_Card' => $request[$i]['idnumber']])->first();
+
+
+                // if (!in_array($request->reason, ["OWNS", "LOST", "UNDER"])) {
+                //     return response()->json(["data" => $request->all(), "status" => "error", "message" => "Reason Error"], 201);
+                // }
+
+
+                if (!$employee_staff) {
+
+                    $employee->names = $request[$i]['fullname'];
+                    $employee->gender = $request[$i]['gender'];
+                    $employee->phone = $request[$i]['phonenumber'];
+                    $employee->phone = $request[$i]['category'];
+                    $employee->ID_Card = $request[$i]['idnumber'];
+                    $employee->department = $request[$i]['department'];
+                    $employee->reason = "OWNS";
+                    $employee->status = "IN";
+                    $employee->dateJoined = $tap_date;
+                    $employee->latestTap = $tap_date;
+
+
+                    try {
+
+                        $employee->save();
+                        $tap->user_id = $employee->id;
+                        $tap->ID_Card = $employee->ID_Card;
+                        $tap->tapped_at = $request[$i]['tappedAt'];
+                        $tap->card_type = "STAFF";
+                        $tap->status = "ENTERING";
+
+                        if ($tap->save()) {
+                            $affectedRows++;
+                        }
+                    } catch (\Throwable $th) {
+                        return response()->json(["error" => $th->errorInfo], 500);
+                    }
+
+                    // return response()->json(["data" => ["user" => "VISITOR", "previousTap" => null, "status" => "ENTERING"]], 200);
+                } else {
+
+                    $existing_record = Vistor::where(['ID_Card' => $request[$i]['idnumber']])->get();
+
+                    if ($employee_staff->latestTap == $request[$i]['tappedAt']) {
+
+                        // return response()->json(["data" => "skipped"]);
+
+                        $affectedRows++;
+                        array_push($existingRecords, $existing_record);
+
+                        continue;
+                    } else {
+
+                        $tap->user_id = $employee_staff['id'];
+                        $tap->ID_Card = $employee_staff['ID_Card'];
+                        $tap->tapped_at = $request[$i]['tappedAt'];
+                        $tap->card_type = "STAFF";
+                        $tap->status =  $employee_staff['status'] == "IN" ? "EXITING" : "ENTERING";
+                        Vistor::where('ID_Card', $employee_staff['ID_Card'])->update(['status' => $employee_staff['status'] == "IN" ? "OUT" : "IN"]);
+                        Vistor::where('ID_Card', $employee_staff['ID_Card'])->update(['latestTap' => $tap_date]);
+
+                        try {
+                            if ($tap->save()) {
+                                $affectedRows++;
+                            }
+                        } catch (\Throwable $th) {
+                            return response()->json(["error" => $th->errorInfo], 500);
+                        }
+
+                        // return response()->json(["data" => ["user" => "VISITOR", "status" => "Updated"]]);
+                    }
+                }
+
+                // return response()->json(["data" => $request->all('key')]);
+
+            }
+
+            return response()->json(["result"=> "ok", "affected" => $affectedRows, "repeated" => $existingRecords]);
+        // }
+        
+        
+        // else {
+
+        //     return response()->json(['result' => "no id"]);
+        // }
+   
+   
+    }
+
+
+
+
+
+
+
+
+
 
     public function allTaps()
     {

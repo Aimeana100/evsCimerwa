@@ -29,7 +29,12 @@
     },
     "dependencies": {
         "@material-tailwind/react": "0.3.4",
+        "@progress/kendo-drawing": "^1.17.0",
+        "@progress/kendo-licensing": "^1.2.2",
+        "@progress/kendo-react-pdf": "^5.5.0",
         "chart.js": "^3.7.1",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.5.25",
         "react-lazy-load": "^3.1.14",
         "react-use": "^17.3.2"
     }

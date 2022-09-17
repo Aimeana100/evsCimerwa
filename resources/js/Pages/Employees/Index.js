@@ -6,6 +6,10 @@ import Layout from "@/Layouts/Layout";
 import React from "react";
 import { Button, ClosingAlert, Icon } from "@material-tailwind/react";
 import Search from "@/AppComponents/Search";
+
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
+
 // import SearchFilter from "@/AppComponents/SearchFilter";
 
 const Index = () => {
@@ -58,7 +62,7 @@ const Index = () => {
                                     return (
                                         <tr
                                             key={id}
-                                            className="hover:bg-gray-100 {'bg-red-200' || state == true} focus-within:bg-gray-100"
+                                            className="hover:bg-gray-100 focus-within:bg-gray-100"
                                         >
                                             <td className="border-t">
                                                 {names}

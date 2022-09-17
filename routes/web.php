@@ -59,7 +59,9 @@ Route::get('/companies/burn/{company}', [CompanyController::class, 'companyBurn'
 Route::get('/employees', [EmployeeController::class, 'employees'])->middleware(['auth', 'verified'])->name('employees');
 Route::get('/employees/Attendance', [EmployeeController::class, 'employeesAttendance'])->middleware(['auth', 'verified'])->name('employeesAttendance');
 Route::get('/employees/burn/{employee}', [EmployeeController::class, 'employeeBurn'])->middleware(['auth', 'verified'])->name('employee.burn');
+Route::get('/employees/{id}', [EmployeeController::class, 'employeeOne'])->middleware(['auth', 'verified'])->name('employee.one');
 Route::get('/equipments', [AdminController::class, 'equipments'])->middleware(['auth', 'verified'])->name('equipments');
+                      
 
 
 // Route::get('/dashboard', function () {

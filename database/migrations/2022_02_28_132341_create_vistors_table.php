@@ -19,6 +19,7 @@ class CreateVistorsTable extends Migration
             $table->string('gender',10);
             $table->string('ID_Card',100)->nullable()->comment('NID or custom Card ID');
             $table->string('phone')->nullable();
+            $table->string('issuedate')->nullable();
             $table->string('destination')->nullable()->comment('text describing specific location');
             $table->date('dateJoined')->comment('first time tap');
             $table->date('latestTap')->comment('the latest card tap');

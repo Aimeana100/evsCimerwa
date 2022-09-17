@@ -10,8 +10,7 @@ import Label from "@/Components/Label";
 import pickBy from "lodash/pickBy";
 import { Inertia } from "@inertiajs/inertia";
 import { show_tap_formated } from "../Vistors/Index";
-
-
+import NavLink from "@/Components/NavLink";
 
 class Taps extends Component {
     render() {
@@ -113,10 +112,6 @@ class TapsRow extends Component {
     }
 }
 
-
-
-
-
 const Index = () => {
     const { employees, taps, filters, flash } = usePage().props;
     const {
@@ -129,9 +124,9 @@ const Index = () => {
     // console.log(orderedData.filter((el,i)=>{return el.date == createDateString(new Date())}));
 
     const [values, setValues] = useState({
-        onDate: filters.onDate || "",
+        onDate: filters.onDate || createDateString(new Date()),
         selected: filters.selected || "",
-        shifts: filters.shifts || "",
+        // shifts: filters.shifts || "",
         searchMatch: filters.searchMatch || "",
     });
 
@@ -167,23 +162,6 @@ const Index = () => {
         }));
         // if (opened) setOpened(false);
     }
-
-    // useEffect(() => {
-    //     // https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state
-    //     if (prevValues) {
-
-    //         if(values.searchMatch != "" && orderedData.length != 0){
-    //             const searchTable = orderedData.map(el=> {
-    //                 return {
-    //                     ...el,
-    //                     records: el.records.filter(filtEl=> {return (filtEl.names.includes(values.searchMatch) || filtEl.ID_Card.includes(values.searchMatch))} )
-    //                 }
-    //              })
-    //             setEmployeeData(searchTable);
-    //             return;
-    //         }
-    //     }
-    // }, [values.searchMatch]);
 
     useEffect(() => {
         if (prevValues) {
@@ -249,6 +227,7 @@ const Index = () => {
                 setEmployeeData(visitorOut);
                 return;
             }
+            console.log(values, "dayc");
 
             if (values.onDate != "") {
                 if (
@@ -267,24 +246,28 @@ const Index = () => {
                         })
                     );
                     return;
-                } else {
-                    setValues((values) => ({
-                        ...values,
-                        onDate: createDateString(new Date()),
-                    }));
                 }
+                // else {
+                //     setValues((values) => ({
+                //         ...values,
+                //         onDate: createDateString(new Date()),
+                //     }));
+                // }
             }
-        } else {
-            setValues((values) => ({
-                ...values,
-                onDate: createDateString(new Date()),
-            }));
-            //    const toDay =  orderedData.filter((el,i)=>{return el.date == createDateString(new Date()).toString()})
-            //    setEmployeeData(toDay);
         }
+        //  else {
+        // setValues((values) => ({
+        //     ...values,
+        //     onDate: createDateString(new Date()),
+        // }));
+        const toDay = orderedData.filter((el, i) => {
+            return el.date == createDateString(new Date()).toString();
+        });
+        setEmployeeData(toDay);
+        // }
     }, [values]);
 
-    console.log(employeeData);
+    console.log(employeeData, values);
 
     const shift1 = orderedData
         .filter((el, i) => {
@@ -418,6 +401,7 @@ const Index = () => {
                                 >
                                     All shifts
                                 </option>
+
                                 <option
                                     value="first"
                                     className="rounded  py-3 px-2 text-[12px]"
@@ -516,27 +500,80 @@ const Index = () => {
                                                 key={id}
                                                 className="hover:bg-gray-100 {'bg-red-200' || state == true} focus-within:bg-gray-100"
                                             >
-                                                <td className="border-t">
-                                                    {names}
-                                                </td>
-                                                <td className="border-t ">
-                                                    {ID_Card}
-                                                </td>
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t">
+                                                        {names}
+                                                    </td>
+                                                </InertiaLink>
 
-                                                <td className="border-t">
-                                                    {phone}
-                                                </td>
-                                                <td className="border-t">
-                                                    {gender}
-                                                </td>
-                                                <td className="border-t">
-                                                    {category}
-                                                </td>
-                                                <td className="border-t text-[12px]">
-                                                    <Taps taps={taps} />
-                                                </td>
-                                                <td className="border-t">
-                                                    {/*                                                     
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t ">
+                                                        {ID_Card}
+                                                    </td>
+                                                </InertiaLink>
+
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t">
+                                                        {phone}
+                                                    </td>
+                                                </InertiaLink>
+
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t">
+                                                        {gender}
+                                                    </td>
+                                                </InertiaLink>
+
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t">
+                                                        {category}
+                                                    </td>
+                                                </InertiaLink>
+
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t text-[12px]">
+                                                        <Taps taps={taps} />
+                                                    </td>
+                                                </InertiaLink>
+
+                                                <InertiaLink
+                                                    href={route(
+                                                        "employee.one",
+                                                        id
+                                                    )}
+                                                >
+                                                    <td className="border-t">
+                                                        {/*                                                     
                                                     {state == true ? (
                                                         <InertiaLink
                                                             href={route(
@@ -563,16 +600,33 @@ const Index = () => {
                                                         </InertiaLink>
                                                     )} */}
 
-                                                    {show_tap_formated(taps)}
-                                                </td>
+                                                        {show_tap_formated(
+                                                            taps
+                                                        )}
+                                                    </td>
+                                                </InertiaLink>
                                             </tr>
                                         );
                                     }
                                 )}
+
+                            {employeeData.length == 0 && (
+                                <tr className="text-center">
+                                    {" "}
+                                    <td className="bg-blue-200" colSpan={7}>
+                                        No data for {values.onDate}
+                                    </td>{" "}
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
             </div>
+            {/* <div className="bg-red-100 absolute  z-10 w-screen">
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <h1>Modal</h1>
+                    </div>
+            </div> */}
         </>
     );
 };

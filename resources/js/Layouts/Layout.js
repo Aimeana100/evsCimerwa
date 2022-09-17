@@ -3,7 +3,8 @@ import Sidebar from "@/AppComponents/Sidebar";
 import AdminNavbar from "@/AppComponents/AdminNavbar";
 import { usePage } from "@inertiajs/inertia-react";
 import { create, isArray } from "lodash";
-
+import Image from '@material-tailwind/react/Image';
+import ProfilePicture from '../assets/images/user.png'; 
 
 
 export const createDateString = (dates) => {
@@ -48,9 +49,12 @@ export const getTapsFiltered = (unifiltered) => {
     var taps_filtered = [];
     var organized = organizeDaily(unifiltered);
 
+    // console.log(organized);
+
 
 
     for (var key_day in organized) {
+        // console.log(key_day);
         taps_filtered.push({
             date: key_day,
             records: organized[key_day].map((e, i) => {
@@ -63,8 +67,21 @@ export const getTapsFiltered = (unifiltered) => {
             }),
         });
     }
+// console.log(taps_filtered);
 
-    return taps_filtered;
+
+function compare( a, b ) {
+    if ( a.date < b.date ){
+      return -1;
+    }
+    if ( a.date > b.date ){
+      return 1;
+    }
+    return 0;
+  }
+  
+  taps_filtered.sort( compare );
+  return taps_filtered;
 
 }
 

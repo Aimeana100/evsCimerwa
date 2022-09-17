@@ -12,7 +12,6 @@ use App\Http\Controllers\Controller;
 class InfoMergingController extends Controller
 {
 
-
     public function tap(Request $request)
     {
         // date_default_timezone_set('Africa/kigali');
@@ -25,15 +24,15 @@ class InfoMergingController extends Controller
 
         $tap_date = $request->tappedAt;
 
-
         // return response()->json(["data" => $request->key]);
 
         if ($request->key === "staff") {
 
             $staff = Employee::where(['ID_Card' => $request->idnumber])->get();
-            return "exit";
-            if (count($staff) < 1) {
 
+            return "exit";
+
+            if (count($staff) < 1) {
                 $employee->names = $request->fullname;
                 $employee->gender = $request->gender;
                 $employee->phone = $request->phonenumber;
@@ -81,8 +80,9 @@ class InfoMergingController extends Controller
         //\\
         //  \\
 
-        if ($request->key === "visitor") {
 
+        if ($request->key === "visitor") {
+            
             $currentTime = Carbon::createFromFormat('Y-m-d H:i:s', date('Y-m-d H:i:s'));
             $affectedRows = 0;
             $existingRecords = [];

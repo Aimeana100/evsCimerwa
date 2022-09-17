@@ -41,4 +41,11 @@ Route::get('/card/allVisitors', [AuthController::class, 'allVisitors'])->name('c
 // users
 Route::post('/user',[UserController::class,'user'])->name('user');
 
+// sychronization
+
+
+Route::post('/sync/employee',[AuthController::class,'syncEmployee'])->name('sync.syncEmployee');
+Route::post('/sync/visitors',[AuthController::class,'syncVisitor'])->name('sync.syncVisitor');
+
+
 

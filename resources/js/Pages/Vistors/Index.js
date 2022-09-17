@@ -7,9 +7,19 @@ import React, { Component, useContext, useEffect, useState } from "react";
 import { Icon, Label } from "@material-tailwind/react";
 import { create, isArray } from "lodash";
 import { usePrevious } from "react-use";
-import LazyLoad from "react-lazy-load";
-
+// import { jsPDF } from "jspdf";
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 class TableComponent extends Component {
+    
+     downloadTable = table => {
+            
+        const doc = new jsPDF()
+        doc.autoTable({ html: document.getElementById(table)})
+        doc.save(`${table}.pdf`)
+    }
+
+
     render() {
         var body = this.props.data;
         var tableTitle = this.props.tableTitle;
@@ -29,13 +39,21 @@ class TableComponent extends Component {
             else return specialChars.test(str);
         }
 
+        // function downloadTable(table){
+            
+        //     const doc = new jsPDF()
+        //     doc.autoTable({ html: document.getElementById(table)})
+        //     doc.save(`${table}.pdf`)
+        // }
+
         return (
-            <div className="overflow-x-auto bg-white rounded shadow border-2">
-                <h1 className="text-center px-6 bg-slate-400 py-[1px] text-[26px] font-bold">
+            <div className="overflow-x-auto bg-white m-t-3 rounded shadow border-2">
+                <h1 className="text-center px-6  bg-slate-400 py-[1px] text-[26px] font-bold">
                     {" "}
-                    {tableTitle}{" "}
+                    {tableTitle}
+                    <button onClick={ () => this.downloadTable('report_'+tableTitle)} className="right-2 float-right text-sm border rounded-full p-1" > Download </button>
                 </h1>
-                <table className="w-full whitespace-nowrap mb-3 mx-2 pb-4">
+                <table id={"report_"+tableTitle}  className="w-full whitespace-nowrap mb-3 mx-2 pb-4">
                     <thead>
                         <tr className="font-bold text-left">
                             {heading.map((head, key) => (
@@ -76,6 +94,7 @@ class TableComponent extends Component {
                         })}
                     </tbody>
                 </table>
+
             </div>
         );
     }
@@ -210,6 +229,7 @@ class Taps extends Component {
 
 
 const Index = () => {
+
     const { vistors, taps, filters } = usePage().props;
     const {
         data,
@@ -218,6 +238,13 @@ const Index = () => {
 
     const orderedData = getTapsFiltered(data);
 
+    // const doc = new jsPDF();
+
+    // doc.text("Hello world!", 10, 10);
+    // doc.save("a4.pdf");
+
+    // console.log(orderedData);
+
     const [values, setValues] = useState({
         searchFrom: filters.searchFrom || "",
         selected: filters.selected || "",
@@ -225,6 +252,7 @@ const Index = () => {
     });
 
     const [vistorsData, setVisitorsData] = useState([]);
+
 
     const prevValues = usePrevious(values);
 
@@ -440,6 +468,7 @@ const Index = () => {
                     );
                 })}
             </div>
+
         </>
     );
 };

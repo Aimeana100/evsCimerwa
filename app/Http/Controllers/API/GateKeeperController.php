@@ -30,7 +30,7 @@ class GateKeeperController extends Controller
     
             if ( Auth::attempt($credentials))
                 {
-                    if(count(GateKeeper::where(['username' => $gateUsername ])->get()) > 0){
+                    if(count(GateKeeper::where(['username' => $gateUsername ])->get()) == 0){
                         $gateKeeper = new GateKeeper();
                         $gateKeeper->names = $gateNames;
                         $gateKeeper->username = $gateUsername;
