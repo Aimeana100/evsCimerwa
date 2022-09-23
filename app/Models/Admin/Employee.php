@@ -13,10 +13,12 @@ class Employee extends Model
     protected $fillable = [
         'names',
         'genger',
-        'NID',
+        // 'NID',
         'phone',
+        'email',
         'ID_Card',
         'company',
+        'category',
         'dateJoined',
         'latestTap',
         'status',

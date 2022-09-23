@@ -17,7 +17,7 @@ class Vistor extends Model
         'phone',
         'dateJoined',
         'latestTap',
-        'dayTap',
+        // 'dayTap',
         'reason',
         'status',
     ];

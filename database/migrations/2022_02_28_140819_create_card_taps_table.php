@@ -17,7 +17,7 @@ class CreateCardTapsTable extends Migration
             $table->id();
             $table->string('user_id')->comment('the foreign key of the visitor or staff dpending on the card_type');
             $table->dateTime('tapped_at')->comment('Current time stamp');
-            $table->string('ID_Card')->comment('NID or custom card_id');
+            $table->string('ID_Card')->nullable()->comment('NID or custom card_id');
             $table->string('card_type')->comment('STAFF or VISITOR');
             $table->string('status',10)->comment('ENTERING or EXITING');
             $table->timestamps();

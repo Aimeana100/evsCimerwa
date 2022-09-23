@@ -18,14 +18,19 @@ class VistorController extends Controller
     public function vistors(Request $request)
     {
 
-        $filters = $request->all('searchFrom', 'searchTo', 'selected');
+        // $filters = $request->all('searchFrom', 'searchTo', 'selected');
   
-        $taps = json_encode(['taps' => CardTap::paginate()]);
+        // $taps = json_encode(['taps' => CardTap::paginate()]);
 
-        $vistors = new VisitorCollection(
-            Vistor::paginate(60)
-        );
+        // $vistors = new VisitorCollection(
+        //     Vistor::paginate(60)
+        // );
 
+
+
+        $employees = Vistor::all();
+
+        return view('admin.visitors');
         return Inertia::render('Vistors/Index', ['vistors' => $vistors, 'filters' => $filters, 'taps' => $taps]);
     }
 }

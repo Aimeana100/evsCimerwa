@@ -15,6 +15,7 @@ import NavLink from "@/Components/NavLink";
 class Taps extends Component {
     render() {
         var createDateString = (dates) => {
+
             var date = new Date(dates); //M-D-YYYY;
             var mm = date.getMinutes();
             var hh = date.getHours();
@@ -30,6 +31,7 @@ class Taps extends Component {
         // console.log(taps);
 
         var neObj = taps.reduce((prv, curr) => {
+
             var key = curr.status;
             if (!prv[key]) {
                 prv[key] = [];
@@ -165,9 +167,12 @@ const Index = () => {
 
     useEffect(() => {
         if (prevValues) {
+
             console.log("here");
+
             // if (values.searchFrom != "" && vistorsData.filter((elF, i) => elF.date == values.searchFrom).length != 0) {
             // }
+            
             if (values.selected == "banned") {
                 const visitorIn = orderedData
                     .filter((el, i) => {
@@ -189,6 +194,7 @@ const Index = () => {
                 setEmployeeData(visitorIn);
                 return;
             } else if (values.selected == "activated") {
+
                 const visitorOut = orderedData
                     .filter((el, i) => {
                         return (
@@ -205,6 +211,7 @@ const Index = () => {
                             ),
                         };
                     });
+
                 setEmployeeData(visitorOut);
                 return;
             } else if (values.selected == "inGate") {

@@ -1,146 +1,215 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Report Employee Attendance </title>
+    <link rel="stylesheet" href="{{asset('user_assets/assets/css/bootstrap.css') }}">
+    <script defer src="{{asset('user_assets/assets/fontawesome/js/all.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('user_assets/assets/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('user_assets/assets/css/custom.css') }}">
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .logos{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 5px 20px;
 
-     
+        }
+
+        hr{
+            border: '1px solid #a0a0a0',
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+
+        <div style="" class=" mt-30">
+            <div class="row">
+                {{-- 
+                <div class="logos">
+                    <div class="logo1">
+                        <img src="{{ $data['logo1'] }}" width="150" height="150" />
+                    </div>
+                    <div class="logo2">
+                        <img src="{{ $data['logo2'] }}" width="150" height="150" />
+                    </div>
+                </div> --}}
 
 
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script> --}}
-        <style>
-            body {
-                /* font-family: 'Nunito', sans-serif; */
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                        @endif
-                    @endauth
+                <div style="display:flex; justify-content: space-around ; padding: 5px 20px;"  class="logos">
+                    <div class="logo1">
+                        <img src="{{public_path('user_assets/assets/images/CIMERWALogo.png')}}" width="150" height="150" />
+                    </div>
+                    <div class="logo2">
+                        <img src="{{ public_path('user_assets/assets/images/santech.png') }}" width="150" height="150" />
+                    </div>
                 </div>
-            @endif
+                <div class="title">
+                    <h1 style="text-align: center"> Staff attendance report  </h1>
+                </div>
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <table  id="table1" class="table display nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                            <th> # </th>
+                                        
+                                            <th> Names  </th>
+                                            <th> ID number </th>
+                                            <th> Phone </th>
+                                            <th> Department </th>
+                                            <th> Movement </th>
+                                            {{-- <th> Time</th> --}}
+                                            {{-- <th>tools</th>  --}}
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-                <table class="w-full md:p-4"> 
-                    <thead>
-                        <tr class="font-bold text-left  text-slate-600">
-                            <th class="px-6 pt-5 pb-4">Names</th>
-                            {{-- <th class="px-6 pt-5 pb-4">Phone</th> --}}
-                            <th class="px-6 pt-5 pb-4">NID</th>
-                            <th class="px-3 pt-5 pb-4 p-2">Gender</th>
-                            <th class="px-6 pt-5 pb-4"> Movement </th>
-                            <th class="px-6 pt-5 pb-4"> Taps </th>
-                            <th class="px-6 pt-5 pb-4"> Date </th>
-                        </tr>
-                    </thead>
+                                    @php
+                                        $html ='';
 
-                    <tbody>
-                        @foreach ($vistors as $key => $Dayitem)
-        
-                        @php
-                        $Current_vistor_today_ID = '';
-                        @endphp
+                                        function buildTaps($taps, $ymdDate){
 
-                        <tr><td colspan="6" class="bg-green-200 font-bold  py-3 text-center" > {{$key}} </td> </tr>
+                                            global $html;
 
-                        @foreach ($Dayitem as $SingleDayItem)
+                                            $taps = array_filter($taps, function($element){
 
+                                                return date('Y-m-d', strtotime($element['tapped_at'])) == '2022-06-16';
 
+                                            });
 
-                        @if ($Current_vistor_today_ID != $SingleDayItem->ID_Card)
-
-
-                        @php
-                        $Current_vistor_today_ID = $SingleDayItem->ID_Card;
-
-                        @endphp
-                        <tr
-                        key="{{$key}}"
-                        class="hover:bg-gray-100 px-2  focus-within:bg-gray-100"
-                          >
-                        <td class="border-t">
-                            {{$SingleDayItem->names}}
-                        </td>
-
-                        {{-- <td class="border-t">
-                            {{$item->phone}}
-                        </td> --}}
-                        <td class="border-t px-2 py-4 justify-center ">
-                            {{$SingleDayItem->ID_Card}}
-                        </td>
-
-                        <td class="border-t p-2">
-                            {{$SingleDayItem->gender}}
-                        </td>
-
-                        <td class="border-t p-2 bg-slate-100 w-[150px]">
+                                            $entering = array_filter($taps, function($element){
+                                                return $element["status"] == 'ENTERING';
+                                            
+                                            });
 
 
-                            @foreach ($SingleDayItem->taps as $SingleTap)
+                                            $exiting = array_filter($taps, function($element){
+                                            return $element["status"] == 'EXITING';
+                                        
+                                            });
 
-                            @if ( date('Y-m-d', strtotime($SingleTap->tapped_at)) == $key)
-                                
-                            @if ($SingleTap->status == "ENTERING")
-                            <span class="block w-fit" > {{date('H:s', strtotime($SingleTap->tapped_at))}} </span>
-                            @else
-                            <span class="inline" > {{ date('H:s', strtotime($SingleTap->tapped_at ))}}</span>
-                            @endif
-                            @endif
-                                
-                            @endforeach
-                        </td>
+                                            $entering = array_slice($entering, 0);
+                                            $exiting = array_slice($exiting, 0);
+                                            
 
-                        <td class="border-t">
+                                            $long_taps = count($entering) > count($exiting) ?  count($entering) : count($exiting);
 
-                            {{count($SingleDayItem->taps)}}
-                        </td>
-                        <td class="border-t">
-                            {{$SingleDayItem->status}}
-                        </td>
-                        </tr>
+                                            
+                                                for($i = 0; $i < $long_taps; $i++){
+                                                
+                                                $html = "<div class='flex d-flex row flex-row w-7' >";
+
+                                                if(isset($entering[$i]))
+                                                {
+                                                    echo "<div>" .  date('H:i', strtotime($entering[$i]['tapped_at'])) ." </div>";
+                                                }
+
+                                                if(isset($exiting[$i]))
+                                                {
+                                                    echo "<div>" . date('H:i', strtotime($exiting[$i]['tapped_at']))  ." </div>";
+                                                }
+                                                
+                                                $html .= "</div>";
+                                            }
+
+                                            return $html;
+                                        }
 
 
-                        @else
-
-                        @php
-                          continue;
-                      @endphp
-                      
-                        @endif
+                                      
                             
-                        @endforeach
+                                        function getDiff_dates($start, $end){
+
+                                        // $to = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i',$start);
+                                        // $from = \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $end);
+
+                                        $dateTimeObject1 = date_create($end); 
+                                        $dateTimeObject2 = date_create($start);
+
+                                        $difference = date_diff($dateTimeObject1, $dateTimeObject2);
+
+                                        $minutes = $difference->days * 24 * 60;
+                                        $minutes += $difference->h * 60;
+                                        $minutes += $difference->i;
 
 
-                        @endforeach
-                      
-                    </tbody>
-                </table>
-              
 
-               
+                                        if($difference->h > 1){
+                                        return $difference->h ."hours";
 
-            </div>
+                                        }
+                                        else{
+                                            return $minutes ."mins";
+
+                                        }
+
+
+                                        }
+
+
+                                
+
+                                        $i = 1;
+
+
+                                    @endphp
+
+                           
+
+                                    @foreach ($daysTaps as  $item)
+
+                                    @if (ctype_alpha($item['ID_Card']) || strlen($item['names']) == 0 || preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]/', $item['names']) || preg_match('/[\^£$%&*()}{@#~?><>,|=_+¬-]/', $item['phone'])) 
+                                
+                                    {{--       
+                                    {
+                                        $hasC = false;
+                                        $fake_data++;
+                                    } --}}
+
+                                    @else
+                                                 
+                                    <tr>
+                                        <td> {{$i++}} </td>
+                                        <td> {{ $item['names'] }} </td>
+                                        <td> {{ $item['ID_Card'] }} </td>
+                                        <td> {{ $item['phone']}} </td>
+                                        <td> {{ $item['destination']}} </td>
+                                        <td>
+
+                                        {!!  buildTaps($item['taps'], date('Y-m-d')); !!}
+                                        </td>
+
+                                        {{-- <td>  <img src="{{public_path('user_assets/assets/fontawesome/svgs/solid/mortar-pestle.svg')}}" alt=""> </td> --}}
+                                   
+                                    </tr>
+
+
+                                    @endif
+
+                                    @endforeach
+            
+                                </tbody>
+                            </table>
+            
+            
+                        </div>
+                    </div>
+
+                {{-- </section> --}}
+                </div>
         </div>
-    </body>
+        
+    </div>
+    
+</body>
 </html>

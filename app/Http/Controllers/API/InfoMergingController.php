@@ -15,6 +15,7 @@ class InfoMergingController extends Controller
     public function tap(Request $request)
     {
         // date_default_timezone_set('Africa/kigali');
+       
 
         $employee = new Employee();
         $tap = new CardTap();
@@ -30,11 +31,10 @@ class InfoMergingController extends Controller
 
             $staff = Employee::where(['ID_Card' => $request->idnumber])->get();
 
-            return "exit";
 
             if (count($staff) < 1) {
                 $employee->names = $request->fullname;
-                $employee->gender = $request->gender;
+                // $employee->gender = $request->gender;
                 $employee->phone = $request->phonenumber;
                 $employee->ID_Card = $request->idnumber;
                 $employee->company = $request->residance;
@@ -106,7 +106,7 @@ class InfoMergingController extends Controller
                 if (!$visitor_staff) {
 
                     $visitor->names = $request[$i]['fullname'];
-                    $visitor->gender = $request[$i]['gender'];
+                    // $visitor->gender = $request[$i]['gender'];
                     $visitor->phone = $request[$i]['phonenumber'];
                     $visitor->ID_Card = $request[$i]['idnumber'];
                     $visitor->destination = $request[$i]['destination'];

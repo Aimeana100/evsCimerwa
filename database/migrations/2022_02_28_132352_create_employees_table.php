@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('gender', 10)->nullable();
             $table->string('category');
             $table->string('department');
+            $table->string('NID');
             $table->string('phone')->nullable();
             $table->string('ID_Card')->comment('ID number');
             $table->string('company')->comment('the company that the labour from')->default('CIMERWA');

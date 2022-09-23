@@ -48,7 +48,7 @@ Route::get('/user/create', [UserController::class, 'create'])->middleware(['auth
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->middleware(['auth', 'verified'])->name('users.edit');
 
 // visitor
-Route::get('/vistors', [VistorController::class, 'vistors'])->middleware(['auth', 'verified'])->name('vistors');
+Route::get('/vistors', [VistorController::class, 'vistors'])->middleware(['auth', 'verified'])->name('admin.visitors');
 
 // companies
 Route::get('/companies', [CompanyController::class, 'companies'])->middleware(['auth', 'verified'])->name('companies');
@@ -56,12 +56,20 @@ Route::post('/companies/store', [CompanyController::class, 'store'])->middleware
 Route::get('/companies/burn/{company}', [CompanyController::class, 'companyBurn'])->middleware(['auth', 'verified'])->name('company.burn');
 
 
-Route::get('/employees', [EmployeeController::class, 'employees'])->middleware(['auth', 'verified'])->name('employees');
-Route::get('/employees/Attendance', [EmployeeController::class, 'employeesAttendance'])->middleware(['auth', 'verified'])->name('employeesAttendance');
+Route::get('/employees', [EmployeeController::class, 'employees'])->middleware(['auth', 'verified'])->name('admin.employees');
+Route::get('/employees/Attendance', [EmployeeController::class, 'employeesAttendance'])->middleware(['auth', 'verified'])->name('admin.attendance');
+Route::get('/employees/Attendance/download', [EmployeeController::class, 'employeesAttendanceDownload'])->middleware(['auth', 'verified'])->name('admin.attendance.download');
 Route::get('/employees/burn/{employee}', [EmployeeController::class, 'employeeBurn'])->middleware(['auth', 'verified'])->name('employee.burn');
 Route::get('/employees/{id}', [EmployeeController::class, 'employeeOne'])->middleware(['auth', 'verified'])->name('employee.one');
+
+
 Route::get('/equipments', [AdminController::class, 'equipments'])->middleware(['auth', 'verified'])->name('equipments');
-                      
+
+Route::get('/account', [AdminController::class, 'account'])->middleware(['auth', 'verified'])->name('admin.account');
+Route::get('/editPassword', [AdminController::class, 'editPassword'])->middleware(['auth', 'verified'])->name('admin.editPassword');
+
+// Route::get('/visitors', [EmployeeController::class, 'visitors'])->middleware(['auth', 'verified'])->name('admin.visitors');
+
 
 
 // Route::get('/dashboard', function () {

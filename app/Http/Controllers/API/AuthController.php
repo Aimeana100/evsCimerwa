@@ -74,10 +74,10 @@ class AuthController extends Controller
             if (count($staff) < 1) {
 
                 $employee->names = $request->fullname;
-                $employee->gender = $request->gender;
+                // $employee->gender = $request->gender;
                 $employee->phone = $request->phonenumber;
                 $employee->ID_Card = $request->idnumber;
-                $employee->company = $request->residance;
+                // $employee->company = $request->residance;
                 $employee->category = $request->category;
                 $employee->status = "IN";
                 $employee->dateJoined = $currentTime;
@@ -115,6 +115,9 @@ class AuthController extends Controller
             }
         }
 
+
+        return response()->json(["viditor"=> Vistor::all()->count()]);
+
         //     \\ 
         // Vistor \\
 
@@ -122,15 +125,17 @@ class AuthController extends Controller
 
             $visitor_staff = Vistor::where(['ID_Card' => $request->idnumber])->get();
 
-
             // if (!in_array($request->reason, ["OWNS", "LOST", "UNDER"])) {
             //     return response()->json(["data" => $request->all(), "status" => "error", "message" => "Reason Error"], 201);
             // }
 
+            return response()->json(["viditor"=> Vistor::all()->count()]);
+
+
             if (count($visitor_staff) < 1) {
 
                 $visitor->names = $request->fullname;
-                $visitor->gender = $request->gender;
+                // $visitor->gender = $request->gender;
                 $visitor->phone = $request->phonenumber;
                 $visitor->ID_Card = $request->idnumber;
                 $visitor->destination = $request->destination;

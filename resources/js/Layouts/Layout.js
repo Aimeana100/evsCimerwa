@@ -18,7 +18,6 @@ export const createDateString = (dates) => {
     return date;
 };
 
-
 const organizeDaily = (mixed_records) => {
     var ArrSorted = [];
 
@@ -37,7 +36,6 @@ const organizeDaily = (mixed_records) => {
     for (const el in ArrSorted) {
         ArrSorted[el] = Array.from(new Set(ArrSorted[el]));
     }
-
     return ArrSorted;
 };
 
@@ -74,6 +72,7 @@ function compare( a, b ) {
     if ( a.date < b.date ){
       return -1;
     }
+
     if ( a.date > b.date ){
       return 1;
     }
@@ -84,6 +83,8 @@ function compare( a, b ) {
   return taps_filtered;
 
 }
+
+
 
 function Layout({ title, children }) {
 
