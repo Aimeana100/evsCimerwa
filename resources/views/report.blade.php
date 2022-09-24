@@ -107,7 +107,7 @@
                                             
                                                 for($i = 0; $i < $long_taps; $i++){
                                                 
-                                                $html = "<div class='flex d-flex row flex-row w-7' >";
+                                                $html = "<div class='flex d-flex taps__movement row flex-row w-7' >";
 
                                                 if(isset($entering[$i]))
                                                 {
@@ -118,6 +118,12 @@
                                                 {
                                                     echo "<div>" . date('H:i', strtotime($exiting[$i]['tapped_at']))  ." </div>";
                                                 }
+
+                                                if(isset($entering[$i]) && isset($exiting[$i]))
+                                                    {
+                                                    echo getDiff_dates($entering[$i]['tapped_at'],$exiting[$i]['tapped_at']) ;
+
+                                                    }
                                                 
                                                 $html .= "</div>";
                                             }

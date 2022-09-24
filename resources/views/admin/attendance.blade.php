@@ -49,11 +49,11 @@
                                     <tbody>
 
                                         @php
-                                            $html ='';
+                                            
 
                                             function buildTaps($taps, $ymdDate){
 
-                                                global $html;
+                                                 $html = '';
 
                                                 $taps = array_filter($taps, function($element){
 
@@ -81,21 +81,21 @@
                                                 
                                                     for($i = 0; $i < $long_taps; $i++){
                                                     
-                                                    $html = "<div class='flex taps__movement flex-row w-7' >";
+                                                    $html .= "<div class='flex taps__movement flex-row w-7' >";
 
                                                     if(isset($entering[$i]))
                                                     {
-                                                        echo "<div>" .  date('H:i', strtotime($entering[$i]['tapped_at'])) ." </div>";
+                                                        $html .= "<div>" .  date('H:i', strtotime($entering[$i]['tapped_at'])) ." </div>";
                                                     }
 
                                                     if(isset($exiting[$i]))
                                                     {
-                                                        echo "<div>" . date('H:i', strtotime($exiting[$i]['tapped_at']))  ." </div>";
+                                                        $html .= "<div>" . date('H:i', strtotime($exiting[$i]['tapped_at']))  ." </div>";
                                                     }
 
                                                     if(isset($entering[$i]) && isset($exiting[$i]))
                                                         {
-                                                        echo getDiff_dates($entering[$i]['tapped_at'],$exiting[$i]['tapped_at']) ;
+                                                            $html .=  getDiff_dates($entering[$i]['tapped_at'],$exiting[$i]['tapped_at']) ;
 
                                                         }
 

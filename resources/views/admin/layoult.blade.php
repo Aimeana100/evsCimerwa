@@ -75,12 +75,33 @@
       }
 
 
+      .taps__movement{
+         display: flex;
+         background-color: beige;
+         padding: 2px;
+         justify-content: space-between;
+         }
 
 
+         table tbody {
+         font-weight: 500;
+         color: black;
+
+         }
+
+         .taps__movement div:nth-child(1) {
+         color: #4F90C8;
+         font-weight: 600;
+
+         }
+
+         .taps__movement div:nth-child(2) {
+         color: #595C5C;
+         font-weight: 600;
+
+         }
 
     </style>
-
-
 
       @yield('css')
 
